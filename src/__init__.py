@@ -1,0 +1,10 @@
+src/
+    __init__.py
+    data/
+        __init__.py
+    features/
+        __init__.py
+    models/
+        __init__.py
+    visualization
+        __init__.py
