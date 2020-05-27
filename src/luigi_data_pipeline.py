@@ -2,6 +2,7 @@ import luigi
 import requests
 import json
 import csv
+import numpy as np
 import pandas as pd
 import config
 import keys
@@ -10,6 +11,7 @@ from data.get_weather_data import get_data
 from data.parse_weather_data import parse_data
 from data.scale_weather_features import scale_features
 from data.onehot_encode_month import onehot_month
+from data.format_for_lstm import format_data
 
 
 class GetWeatherData(luigi.Task):
@@ -88,6 +90,26 @@ class OneHotEncodeMonth(luigi.Task):
 
         with self.output().open('w') as output_file:
             output_data.to_csv(output_file, index=False)
+
+
+class FormatForLSTM(luigi.Task):
+    def requires(self):
+        return OneHotEncodeMonth()
+
+    def output(self):
+        output_file = f"{config.PROCESSED_WEATHER_DATA_DIR}prediction_data.npy"
+        return luigi.LocalTarget(output_file, format=luigi.format.Nop)
+
+    def run(self):
+        with self.input().open('r') as input_file:
+            input_data = pd.read_csv(input_file)
+
+        input_shape_parameters = config.LSTM_INPUT_SHAPE_PARAMETERS
+        output_data = format_data(input_data, input_shape_parameters)
+        output_data = np.asarray(output_data)
+
+        with self.output().open('wb') as output_file:
+            np.savez(output_file, output_data)
 
 
 if __name__ == '__main__':
