@@ -69,8 +69,11 @@ class ScaleWeatherFeatures(luigi.Task):
         with self.input().open('r') as input_file:
             input_data = pd.read_csv(input_file)
 
+        quantile_tansformer = config.QUANTILE_TRANSFORMER_FILE
+        min_max_scaler = config.MIN_MAX_SCALER_FILE
         features_to_scale = config.WEATHER_FEATURES_TO_SCALE
-        output_data = scale_features(input_data, features_to_scale)
+        output_data = scale_features(
+            input_data, features_to_scale, quantile_transformer, min_max_scaler)
 
         with self.output().open('w') as output_file:
             output_data.to_csv(output_file, index=False)

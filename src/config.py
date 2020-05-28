@@ -5,6 +5,9 @@ IGNITION_RISK_PREDICTIONS_DIR = '../data/predictions/'
 
 LAT_LON_BINS_FILE = '../data/intermediate/california_geospatial_bins.csv'
 
+QUANTILE_TRANSFORMER_FILE = './data/quantile_transformer'
+MIN_MAX_SCALER_FILE = '/data/min_max_scaler'
+
 WEATHER_DATA_COLUMN_NAMES = [
     'date',
     'lat',
