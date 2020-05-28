@@ -99,7 +99,7 @@ class FormatForLSTM(luigi.Task):
         return OneHotEncodeMonth()
 
     def output(self):
-        output_file = f"{config.PROCESSED_WEATHER_DATA_DIR}prediction_data.npy"
+        output_file = f"{config.PROCESSED_WEATHER_DATA_DIR}input_weather_data.npy"
         return luigi.LocalTarget(output_file, format=luigi.format.Nop)
 
     def run(self):
