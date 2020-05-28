@@ -12,6 +12,8 @@ from data.parse_weather_data import parse_data
 from data.scale_weather_features import scale_features
 from data.onehot_encode_month import onehot_month
 from data.format_for_lstm import format_data
+from prediction.predict_ignition_risk import predict
+from prediction.format_predictions_for_api import format_for_api
 
 
 class GetWeatherData(luigi.Task):
@@ -109,7 +111,53 @@ class FormatForLSTM(luigi.Task):
         output_data = np.asarray(output_data)
 
         with self.output().open('wb') as output_file:
-            np.savez(output_file, output_data)
+            np.save(output_file, output_data)
+
+
+class Predict(luigi.Task):
+    def requires(self):
+        return FormatForLSTM()
+
+    def output(self):
+        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}predictions.npy"
+        return luigi.LocalTarget(output_file, format=luigi.format.Nop)
+
+    def run(self):
+        with self.input().open('r') as input_file:
+            input_data = np.load(input_file)
+
+        weights_file = config.TRAINED_MODEL_WEIGHTS_FILE
+        hyperparameters = config.LSTM_HYPERPARAMETERS
+        output_data = predict(input_data, hyperparameters, weights_file)
+
+        print(output_data)
+
+        with self.output().open('wb') as output_file:
+            np.save(output_file, output_data)
+
+
+class FormatPredictionsForAPI(luigi.Task):
+    def requires(self):
+        return Predict()
+
+    def output(self):
+        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}formatted_predictions.csv"
+        return luigi.LocalTarget(output_file)
+
+    def run(self):
+        with self.input().open('r') as input_file:
+            input_data = np.load(input_file)
+
+        lat_lon_bin_file = config.LAT_LON_BINS_FILE
+
+        with open(lat_lon_bin_file, 'r') as lat_lon_bins_file:
+            rows = csv.reader(lat_lon_bins_file)
+            lat_lon_bins = list(rows)
+
+        output_data = format_for_api(input_data, lat_lon_bins)
+
+        with self.output().open('w') as output_file:
+            output_data.to_csv(output_file, index=False)
 
 
 if __name__ == '__main__':

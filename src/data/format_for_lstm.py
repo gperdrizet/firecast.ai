@@ -6,6 +6,7 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
     '''takes dataframe and information about desired output shape (history window size,
     target window size, timesteps to slide history window) and returns a formatte list'''
 
+    print(input_data)
     history_size = shape_parameters['history_size']
     target_size = shape_parameters['target_size']
     step = shape_parameters['step']
@@ -40,7 +41,6 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
         for i in range(start_index, end_index):
             indices = range(i - history_size, i, step)
             bin_data.append(spatial_bin[indices])
-
         # add to master
         data_list.append(np.array(bin_data))
 
@@ -62,4 +62,4 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
         trimmed_sample = sample[-smallest_sample:, :]
         trimmed_data_list.append(trimmed_sample)
 
-    return trimmed_data_list
+    return data_list

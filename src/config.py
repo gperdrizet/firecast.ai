@@ -1,32 +1,33 @@
 RAW_WEATHER_DATA_DIR = '../data/raw/'
 INTERMIDIATE_WEATHER_DATA_DIR = '../data/intermediate/'
 PROCESSED_WEATHER_DATA_DIR = '../data/processed/'
+IGNITION_RISK_PREDICTIONS_DIR = '../data/predictions/'
 
 LAT_LON_BINS_FILE = '../data/intermediate/california_geospatial_bins.csv'
 
 WEATHER_DATA_COLUMN_NAMES = [
+    'date',
     'lat',
     'lon',
-    'date',
     'temp',
-    'pressure',
+    'rain',
     'humidity',
     'dew_point',
+    'pressure',
     'uwind',
     'vwind',
     'cloud_cover',
-    'rain'
 ]
 
 WEATHER_FEATURES_TO_SCALE = [
     'temp',
-    'pressure',
+    'rain',
     'humidity',
     'dew_point',
+    'pressure',
     'uwind',
     'vwind',
     'cloud_cover',
-    'rain'
 ]
 
 LSTM_INPUT_SHAPE_PARAMETERS = {
@@ -34,3 +35,14 @@ LSTM_INPUT_SHAPE_PARAMETERS = {
     'target_size': 1,          # number of timepoints to predict from each history time chunk
     'step': 1                  # number of timepoints to move the history time chunk
 }
+
+LSTM_HYPERPARAMETERS = {
+    'batch_size': 1,
+    'lstm_units': 1,
+    'variational_dropout': 0.24,
+    'hidden_units': 410,
+    'hidden_l1_lambda': 0.1,
+    'output_bias': -2.68
+}
+
+TRAINED_MODEL_WEIGHTS_FILE = './models/parallel_LSTM_weights.tf'

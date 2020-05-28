@@ -23,7 +23,8 @@ def parse_data(data: dict, column_names: list) -> 'DataFrame':
                 temp = (day_temp + evening_temp +
                         night_temp + morning_temp) / 4
 
-                pressure = day['pressure']
+                # NOAA data is in units of Pa while openweather uses hPa
+                pressure = day['pressure'] * 100
                 humidity = day['humidity']
                 dew_point = day['dew_point']
 
@@ -37,17 +38,17 @@ def parse_data(data: dict, column_names: list) -> 'DataFrame':
                 rain = day.get('rain', 0.0)
 
                 row = [
+                    date,
                     lat,
                     lon,
-                    date,
                     temp,
-                    pressure,
+                    rain,
                     humidity,
                     dew_point,
+                    pressure,
                     uwind,
                     vwind,
-                    cloud_cover,
-                    rain
+                    cloud_cover
                 ]
 
                 rows.append(row)
@@ -94,17 +95,17 @@ def parse_data(data: dict, column_names: list) -> 'DataFrame':
             rain = sum(rain_list)
 
             row = [
+                date,
                 lat,
                 lon,
-                date,
                 temp,
-                pressure,
+                rain,
                 humidity,
                 dew_point,
+                pressure,
                 uwind,
                 vwind,
-                cloud_cover,
-                rain
+                cloud_cover
             ]
 
             rows.append(row)
