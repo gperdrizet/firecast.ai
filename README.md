@@ -1,4 +1,4 @@
-# California Wildfire Probability Prediction
+# California Wildfire Risk Prediction
 
 The goal of this project is to build a machine learning model which can predict wildfire ignition risk in California from publicly available meteorology and fire activity data.
 
@@ -13,31 +13,7 @@ Wild fires are common, destructive and deadly natural disasters. Current meteoro
 
 ## Project Description
 
-This project is currently in the data wrangling phase. The goal is to collect and regularize the following data types in space and time:
-
-* Locations of past fire ignition sites
-* Past fire sizes
-* Past fire severity codes
-* Surface Air Temperature
-* Air Temperature at 2 Meters
-* Accumulated Precipitation
-* Relative Humidity at 2 Meters
-* Dew Point Temperature
-* Surface Pressure
-* East-west Component of Wind
-* North-south Component of Wind
-* Vegitation Coverage',
-* Downward Long Wave EM Flux
-* Downward Short Wave EM Flux
-* Low Height Cloud Coverage
-* High Height Cloud Coverage
-* Medium Height Cloud Coverage
-* Planetary Boundary Layer Height
-* Precipitation Rate
-* Visibility
-* Upward Long Wave EM Flux
-
-This historical dataset will be used to train a machine learning model to predict wild fire ignition probability. After initial training and validation is complete the next phase of the project will be to deploy the model as a real time prediction service utilizing current fire activity data and weather predictions.
+This project is currently in the deployment phase.
 
 See the full [project proposal](https://github.com/gperdrizet/wildfire/tree/master/docs/project_proposal.md) for more info.
 
@@ -51,7 +27,6 @@ See the full [project proposal](https://github.com/gperdrizet/wildfire/tree/mast
 
 ### Methods Used
 
-* Inferential Statistics
 * Machine Learning
 * Data Visualization
 * Cartographic Projection
