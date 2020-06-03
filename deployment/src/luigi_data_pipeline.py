@@ -7,6 +7,8 @@ import pandas as pd
 import config
 import keys
 
+from datetime import date
+
 from data.get_weather_data import get_data
 from data.parse_weather_data import parse_data
 from data.scale_weather_features import scale_features
@@ -15,68 +17,103 @@ from data.format_for_lstm import format_data
 from prediction.predict_ignition_risk import predict
 from prediction.format_predictions_for_api import format_for_api
 
+TODAY = date.today()
+
 
 class GetWeatherData(luigi.Task):
+    '''Gets weather data from openweathermap.org API'''
+
     def requires(self):
+        # First task in pipeline, requires nothing
         return None
 
     def output(self):
-        output_file = f"{config.RAW_WEATHER_DATA_DIR}test.json"
+        # Output is JSON weather data file named for today's date
+        output_file = f'{config.RAW_WEATHER_DATA_DIR}{TODAY}.json'
         return luigi.LocalTarget(output_file)
 
     def run(self):
+        # get API key as string
         key = keys.OPENWEATHER_API_KEY
+
+        # file name string for files contating the latitude, longitude corrdinates
+        # we need to get weather data for
         lat_lon_bin_file = config.LAT_LON_BINS_FILE
 
+        # read lat, lon bins into list
         with open(lat_lon_bin_file, 'r') as lat_lon_bins_file:
             rows = csv.reader(lat_lon_bins_file)
             lat_lon_bins = list(rows)
 
+        # run functions to download weather data from API
         weather_data = get_data(key, lat_lon_bins)
 
+        # save result as JSON
         with self.output().open('w') as output_file:
             json.dump(weather_data, output_file)
 
 
 class ParseWeatherData(luigi.Task):
+    '''Takes raw weather data, retireives and formats weather
+    variables of intrest'''
+
     def requires(self):
+        # requires successful download of weather data
         return GetWeatherData()
 
     def output(self):
-        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}test.csv"
+        # output is csv file named for today's date in intermediate data
+        # processing directory
+        output_file = f'{config.INTERMIDIATE_WEATHER_DATA_DIR}{TODAY}.parquet'
         return luigi.LocalTarget(output_file)
 
     def run(self):
+        # load JSON file produced by GetWeatherData task
         with self.input().open('r') as input_file:
             input_data = json.load(input_file)
 
+        # run function to parse, extract and format weather data
         output_data = parse_data(
             input_data, config.WEATHER_DATA_COLUMN_NAMES)
 
+        # write output
         with self.output().open('w') as output_file:
-            output_data.to_csv(output_file, index=False)
+            output_data.to_parquet(output_file)
 
 
 class ScaleWeatherFeatures(luigi.Task):
+    '''Nomalize weather data with box cox transformation
+    then scale to range (-1, 1), matches tanh activation function
+    in LSTM layers'''
+
     def requires(self):
+        # requires parsed weather data
         return ParseWeatherData()
 
     def output(self):
-        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}test_scaled.csv"
+        # writes result to intermidate data processing dir, names after today's
+        # date with extension
+        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}{TODAY}_scaled.parquet"
         return luigi.LocalTarget(output_file)
 
     def run(self):
         with self.input().open('r') as input_file:
-            input_data = pd.read_csv(input_file)
+            input_data = pd.read_parquet(input_file)
 
+        # load box cox transformer and min max scalers which were used
+        # to scale the training data - this way our live prediction data
+        # is transformed in exactly the same way
         quantile_tansformer = config.QUANTILE_TRANSFORMER_FILE
         min_max_scaler = config.MIN_MAX_SCALER_FILE
+
+        # run function to transform and scale features of intrest
         features_to_scale = config.WEATHER_FEATURES_TO_SCALE
         output_data = scale_features(
             input_data, features_to_scale, quantile_transformer, min_max_scaler)
 
+        # write resutl
         with self.output().open('w') as output_file:
-            output_data.to_csv(output_file, index=False)
+            output_data.to_parquet(output_file, index=False)
 
 
 class OneHotEncodeMonth(luigi.Task):
