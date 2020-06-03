@@ -109,95 +109,136 @@ class ScaleWeatherFeatures(luigi.Task):
         # run function to transform and scale features of intrest
         features_to_scale = config.WEATHER_FEATURES_TO_SCALE
         output_data = scale_features(
-            input_data, features_to_scale, quantile_transformer, min_max_scaler)
+            input_data, features_to_scale, quantile_tansformer, min_max_scaler)
 
-        # write resutl
+        # write result
         with self.output().open('w') as output_file:
-            output_data.to_parquet(output_file, index=False)
+            output_data.to_parquet(output_file, index)
 
 
 class OneHotEncodeMonth(luigi.Task):
+    '''One hot encodes month'''
+
     def requires(self):
+        # Takes scaled weather data
         return ScaleWeatherFeatures()
 
     def output(self):
-        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}test_scaled_onehot_month.csv"
+        # writes result to intermidate data processing dir, names after today's
+        # date with descriptive extension
+        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}{TODAY}_scaled_onehot_month.parquet"
         return luigi.LocalTarget(output_file)
 
     def run(self):
+        # read scaled weather data
         with self.input().open('r') as input_file:
-            input_data = pd.read_csv(input_file)
+            input_data = pd.read_parquet(input_file)
 
+        # run fucntion to one hot encode month
         output_data = onehot_month(input_data)
 
+        # write result to disk
         with self.output().open('w') as output_file:
-            output_data.to_csv(output_file, index=False)
+            output_data.to_parquet(output_file, index)
 
 
 class FormatForLSTM(luigi.Task):
+    '''Takes processed weather data and formats for imput to LSTM neural net for
+    fire risk prediction.'''
+
     def requires(self):
+        # takes complete transformed,scaled and encoded weather dataset
         return OneHotEncodeMonth()
 
     def output(self):
-        output_file = f"{config.PROCESSED_WEATHER_DATA_DIR}input_weather_data.npy"
+        # saves result to pickled numpy array of arrays
+        output_file = f"{config.PROCESSED_WEATHER_DATA_DIR}{TODAY}_input_weather_data.npy"
         return luigi.LocalTarget(output_file, format=luigi.format.Nop)
 
     def run(self):
+        # read input data
         with self.input().open('r') as input_file:
-            input_data = pd.read_csv(input_file)
+            input_data = pd.read_parquet(input_file)
 
+        # load target shape parameters for numpy array
         input_shape_parameters = config.LSTM_INPUT_SHAPE_PARAMETERS
+
+        # run function to do shape transforms
         output_data = format_data(input_data, input_shape_parameters)
+
+        # convert to numpy
         output_data = np.asarray(output_data)
 
+        # save as npy fule
         with self.output().open('wb') as output_file:
             np.save(output_file, output_data)
 
 
 class Predict(luigi.Task):
+    '''Takes formatted weather data, model weights and hyperparameters,
+    predicts fire igintion risk'''
+
     def requires(self):
+        # requires formatted weather dataset
         return FormatForLSTM()
 
     def output(self):
-        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}predictions.npy"
+        # writes predictions to npy file named after today's date
+        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}{TOADY}_predictions.npy"
         return luigi.LocalTarget(output_file, format=luigi.format.Nop)
 
     def run(self):
+        # load weather data
         with self.input().open('r') as input_file:
             input_data = np.load(input_file)
 
+        # load pretrained model weights
         weights_file = config.TRAINED_MODEL_WEIGHTS_FILE
+
+        # load optimized model hyperparameters
         hyperparameters = config.LSTM_HYPERPARAMETERS
+
+        # run prediction
         output_data = predict(input_data, hyperparameters, weights_file)
 
-        print(output_data)
-
+        # save predictions
         with self.output().open('wb') as output_file:
             np.save(output_file, output_data)
 
 
 class FormatPredictionsForAPI(luigi.Task):
+    '''Takes raw prediction results from LSTM neural network and formats
+    them to be served by flask API'''
+
     def requires(self):
+        # needs today's predictions
         return Predict()
 
     def output(self):
-        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}formatted_predictions.csv"
+        # writes formatted predictions to parquet file named for today's date
+        # with descriptive extension
+        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}{TODAY}_formatted_predictions.parquet"
         return luigi.LocalTarget(output_file)
 
     def run(self):
+        # load unformatted predictions
         with self.input().open('r') as input_file:
             input_data = np.load(input_file)
 
+        # load latitude and longitude bins that predictions
+        # correspond to - read into list
         lat_lon_bin_file = config.LAT_LON_BINS_FILE
 
         with open(lat_lon_bin_file, 'r') as lat_lon_bins_file:
             rows = csv.reader(lat_lon_bins_file)
             lat_lon_bins = list(rows)
 
+        # run fucntion to format predictions
         output_data = format_for_api(input_data, lat_lon_bins)
 
+        # write result to disk
         with self.output().open('w') as output_file:
-            output_data.to_csv(output_file, index=False)
+            output_data.to_parquet(output_file)
 
 
 if __name__ == '__main__':
