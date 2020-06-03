@@ -28,9 +28,9 @@ def data_diagnostic_plot(data, var, y_streach, y_scale):
     plt.show()
     
 def one_sample_density_plot(
+    ax,
     plot_location, 
-    data, 
-    #normalized_data, 
+    data,  
     data_type, 
     title, 
     xlabel, 
@@ -46,6 +46,7 @@ def one_sample_density_plot(
     ax[plot_location].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 
 def three_sample_density_plot(
+    ax,
     plot_location, 
     sample_1_data,
     sample_2_data,
@@ -192,9 +193,8 @@ def plot_roc(name, labels, predictions, **kwargs):
     ax = plt.gca()
     ax.set_aspect('equal')
     plt.tight_layout()
-    #plt.savefig('../../figures/single_statefull_LSTM_ROC_training-validation_CA_only.png', bbox_inches='tight')
     
-def plot_cm(labels, predictions, p=0.5):
+def plot_cm(labels, predictions, filename, p=0.5):
     cm = confusion_matrix(labels, predictions > p)
     normalized_cm = np.empty([2, 2])
     normalized_cm[0][0] = cm[0][0] / (cm[0][0] + cm[0][1])
@@ -214,5 +214,5 @@ def plot_cm(labels, predictions, p=0.5):
     print('Total fires: ', np.sum(cm[1]))
     
     plt.tight_layout()
-    #plt.savefig('../../figures/single_statefull_LSTM_confusion_matrix_CA_only.png', bbox_inches='tight')
+    plt.savefig(filename, bbox_inches='tight')
  

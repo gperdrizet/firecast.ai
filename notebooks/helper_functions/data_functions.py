@@ -6,18 +6,30 @@ from tensorflow.python.keras import backend as K
 
 def multivariate_data(
     dataset,
-    target, 
-    start_index, 
-    end_index, 
     history_size,
     target_size, 
     step
 ):
     
+    # sort by date, then drop date column
+    dataset = dataset.sort_values('date')
+    dataset.drop('date', axis=1, inplace=True)
+
+    # get index of ignition column
+    ignition_index = dataset.columns.get_loc('ignition')
+
+    # convert to numpy array
+    dataset = np.array(dataset.values)
+
+    # split ignition label off
+    target = dataset[:, ignition_index]
+    dataset = np.delete(dataset, ignition_index, 1)
+    
     data = []
     labels = []
 
-    start_index = start_index + history_size
+    start_index = history_size
+    end_index = len(dataset) - target_size
     
     if end_index is None:
         end_index = len(dataset) - target_size

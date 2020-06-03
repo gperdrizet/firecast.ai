@@ -29,7 +29,7 @@ TEMP_PARSED_DATAFILE_SUBDIR = 'parsed_NOAA_datafiles_tmp/'
 COMPLETE_PARSED_DATAFILE_SUBDIR = 'parsed_NOAA_datafiles_complete/'
 
 START_YEAR = 1992
-END_YEAR = 2015
+END_YEAR = 1997
 DATA_YEARS = range(START_YEAR, (END_YEAR + 1), 1)
 
 DATA_TYPES = {
@@ -63,8 +63,8 @@ LON_END = -66.50
 BOUNDING_BOX = [LAT_START, LAT_END, LON_START, LON_END]
 
 US_STATES_SHAPEFILE = '/mnt/SSD/data/spatial_data/cb_2018_us_state_500k.shp'
-#SAMPLE_WEATHER_DATA_FILE = 'air.sfc.1992.parquet'
-TARGET_GEOSPATIAL_BINS_FILE = '/mnt/SSD/data/spatial_data/noaa_weather_data_geospatial_bins.parquet'
+SAMPLE_WEATHER_DATA_FILE = '/mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafiles_complete/air.sfc.1992.california_only.parquet'
+TARGET_GEOSPATIAL_BINS_FILE = '/mnt/SSD/data/spatial_data/california_geospatial_bins.parquet'
 TARGET_POLYGON = 146
 
 
@@ -74,9 +74,9 @@ TARGET_POLYGON = 146
 
 USDA_URL = 'https://www.fs.usda.gov/rds/archive/products/RDS-2013-0009.4/RDS-2013-0009.4_SQLITE.zip'
 FIRE_DATA_BASE_PATH = '/mnt/SSD/data/USDA_wildfire_data/'
-FIRE_SQL_FILE = 'USDA_fires.zip'
-FIRE_DATA_FILE = 'fires.parquet'
+FIRE_DATA_FILE = 'USDA_fires'
 CALIFORNIA_FIRE_DATA_FILE = 'california_fires.parquet'
+REGRIDDED_CALIFORNIA_FIRE_DATA_FILE = 'regridded_california_fires.parquet'
 
 #################
 # training data #

@@ -1,3 +1,7 @@
+''' Collection of helper functions for working with spatial data
+used in geospatial filtering of weather data and regridding of fire
+data to match weather data'''
+
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -19,6 +23,10 @@ def load_polygon(shapefile):
     return california
 
 
+# need to load California polygon from disk
+# do this once and make avalible as global so that
+# we don't load it every time the function
+# 'is_ca_point' function is called
 CALIFORNIA = load_polygon(config.US_STATES_SHAPEFILE)
 EMPTY = pd.Series([np.nan, np.nan])
 EMPTY.index = ['lon', 'lat']
@@ -57,11 +65,11 @@ def spatial_filter_coarse(data: 'DataFrame', bounding_box: list) -> 'DataFrame':
     return data
 
 
-keeper_geospatial_bins = pd.read_parquet(config.TARGET_GEOSPATIAL_BINS_FILE)
-
-
 def spatial_filter_fine(data):
     '''Takes dataframe and does innerjoin with US geospatial bins'''
+
+    keeper_geospatial_bins = pd.read_parquet(
+        config.TARGET_GEOSPATIAL_BINS_FILE)
 
     keepers = data.merge(keeper_geospatial_bins, left_on=['lat', 'lon'],
                          right_on=['lat', 'lon'], how='inner')

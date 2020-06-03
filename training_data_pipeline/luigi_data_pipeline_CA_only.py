@@ -12,6 +12,7 @@ from CA_only.get_noaa_weather_data import get_weather_data
 from CA_only.parse_noaa_weather_data import parse_weather_data
 from CA_only.combine_noaa_weather_datafiles import combine_weather_data
 from CA_only.get_usda_fire_data import get_fire_data
+from CA_only.regrid_usda_fire_data import regrid_fire_data
 
 
 class GetWeatherData(luigi.Task):
@@ -87,16 +88,34 @@ class GetWildfireData(luigi.Task):
         return CombineWeatherData()
 
     def output(self):
-        output_file = f'{config.FIRE_DATA_BASE_PATH}{config.FIRE_DATA_FILE}'
+        output_file = f'{config.FIRE_DATA_BASE_PATH}{config.CALIFORNIA_FIRE_DATA_FILE}'
         return luigi.LocalTarget(output_file)
 
     def run(self):
         url = config.USDA_URL
         path = config.FIRE_DATA_BASE_PATH
-        file_name = config.FIRE_SQL_FILE
+        file_name = config.FIRE_DATA_FILE
         output_data = get_fire_data(url, path, file_name)
 
-        # output_data.to_parquet(self.output().path)
+        output_data.to_parquet(self.output().path)
+
+
+class RegridWildfireData(luigi.Task):
+    def requires(self):
+        return GetWildfireData()
+
+    def output(self):
+        output_file = f'{config.FIRE_DATA_BASE_PATH}{config.REGRIDDED_CALIFORNIA_FIRE_DATA_FILE}'
+        return luigi.LocalTarget(output_file)
+
+    def run(self):
+        fire_data_file = f'{config.FIRE_DATA_BASE_PATH}{config.CALIFORNIA_FIRE_DATA_FILE}'
+        sample_weather_data_file = config.SAMPLE_WEATHER_DATA_FILE
+        california_geospatial_bins_file = config.TARGET_GEOSPATIAL_BINS_FILE
+        output_data = regrid_fire_data(
+            fire_data_file, sample_weather_data_file, california_geospatial_bins_file)
+
+        output_data.to_parquet(self.output().path)
 
 
 if __name__ == '__main__':

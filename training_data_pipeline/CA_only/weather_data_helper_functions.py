@@ -1,3 +1,6 @@
+'''Collection of helper functions for use in parsing and
+formatting NOAA NARR weather data'''
+
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -51,8 +54,13 @@ def first_pass_parse_noaa_weather_data(data_year: int) -> 'DataFrame':
         output_file = (config.WEATHER_DATA_BASE_PATH + config.TEMP_PARSED_DATAFILE_SUBDIR +
                        data_type + "." + str(data_year) + ".california_box.parquet")
 
+        # read netcdf file with xarray
         data = netcdf_to_data(input_file)
+
+        # remove unncesasry columns, rename data columns and set date time index
         data = clean_noaa_narr_data(data, data_type)
+
+        # discard data outside of bounding box encompassing california
         data = spatial_filter_coarse(data, config.BOUNDING_BOX)
         data.reset_index(inplace=True)
 
@@ -76,7 +84,10 @@ def second_pass_parse_noaa_weather_data(data_year):
         output_file = (config.WEATHER_DATA_BASE_PATH + config.TEMP_PARSED_DATAFILE_SUBDIR +
                        data_type + "." + str(data_year) + ".california_only.parquet")
 
+        # read data which has been preprocessed with coarse bounding box geospatial filter
         data = pd.read_parquet(input_file)
+
+        # use shaply and California polygon to discard data outside of California's boarders
         data = spatial_filter_fine(data)
 
         # output to parquet
@@ -86,9 +97,13 @@ def second_pass_parse_noaa_weather_data(data_year):
 
 
 def collect_by_year(data_year):
+    '''Takes a year and dict of weather variable data types, returns single
+    dataframe containing all weather data for that year'''
+
+    # get list of datatypes
+    data_types = list(config.DATA_TYPES.keys())
 
     # read first dataset into dataframe so we have something to join with
-    data_types = list(config.DATA_TYPES.keys())
     first_variable = data_types[0]
 
     first_input_file = (config.WEATHER_DATA_BASE_PATH + config.COMPLETE_PARSED_DATAFILE_SUBDIR +
@@ -96,20 +111,23 @@ def collect_by_year(data_year):
 
     data = pd.read_parquet(first_input_file)
 
-    print(first_input_file)
-
-    # start loop on second data_type, used first to initalize dataframe
+    # start loop on second data_type
     for data_type in data_types[1:]:
+
+        # read new datafile
         input_file = (config.WEATHER_DATA_BASE_PATH + config.COMPLETE_PARSED_DATAFILE_SUBDIR +
                       data_type + "." + str(data_year) + ".california_only.parquet")
 
-        input_file
-
         incomming_data = pd.read_parquet(input_file)
+
+        # make sure column name formatting matches
         incomming_data.columns = incomming_data.columns.str.replace("[.]", "_")
+
+        # merge new datafile with master
         data = pd.merge(data, incomming_data, on=[
                         'lat', 'lon', 'time'], how='outer')
 
+    # write result
     output_file = (config.WEATHER_DATA_BASE_PATH + config.COMPLETE_PARSED_DATAFILE_SUBDIR +
                    "all." + str(data_year) + ".california_only.parquet")
 
