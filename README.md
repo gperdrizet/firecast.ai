@@ -60,10 +60,11 @@ Look at the [project walkthrough](https://github.com/gperdrizet/wildfire_product
 
 ## Getting Started
 
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
-2. Training data sets are being kept [here](https://github.com/gperdrizet/wildfire/tree/master/data/training_data/) within this repo.
-3. Data exploration/transformation notebooks are being kept [here](https://github.com/gperdrizet/wildfire/tree/master/notebooks)
-4. Finalized scripts for data aquisition and transformation are being kept [Here](https://github.com/gperdrizet/wildfire/tree/master/python)  
+1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/))
+2. Training data sets are being kept [here](https://www.perdrizet.org/data/wildfire/)
+3. Data exploration/transformation notebooks are being kept [here](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks)
+4. Finalized scripts for data aquisition and transformation are being kept [here](https://github.com/gperdrizet/wildfire_production/tree/master/training_data_pipeline)
+5. Deployment related scripts and data are [here](https://github.com/gperdrizet/wildfire_production/tree/master/deployment)
 
 
 ## Contributing Members
