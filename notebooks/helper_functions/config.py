@@ -14,8 +14,8 @@ features = [
     'mean_uwnd_10m',
     'mean_vwnd_10m',
     'mean_cloud_cover',
-    'veg',
-    'crain',
+#     'veg',
+#     'crain',
     'ignition',
     'date'
 ]
@@ -29,8 +29,8 @@ features_to_scale = [
     'mean_uwnd_10m',
     'mean_vwnd_10m',
     'mean_cloud_cover',
-    'veg',
-    'crain'
+#     'veg',
+#     'crain'
 ]
 
 months = {
@@ -57,15 +57,15 @@ top = 0.9      # the top of the subplots of the figure
 wspace = 0.5   # the amount of width reserved for blank space between subplots
 hspace = 0.7   # the amount of height reserved for white space between subplots
 
-fig_rows = 3
+fig_rows = 2 #3
 fig_cols = 4
-plot_height = 10
+plot_height = 7
 plot_width = 20
 
 plot_locations = [
     (0,0),(0,1),(0,2),(0,3),
     (1,0),(1,1),(1,2),(1,3),
-    (2,0),(2,1),(2,2),(2,3)
+#     (2,0),(2,1),(2,2),(2,3)
 ]
 
 metrics = [

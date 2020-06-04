@@ -7,7 +7,6 @@ import shutil
 # import numpy as np
 # import pandas as pd
 import CA_only.config as config
-
 from CA_only.get_noaa_weather_data import get_weather_data
 from CA_only.parse_noaa_weather_data import parse_weather_data
 from CA_only.combine_noaa_weather_datafiles import combine_weather_data

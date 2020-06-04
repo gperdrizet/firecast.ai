@@ -6,18 +6,18 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
     '''takes dataframe and information about desired output shape (history window size,
     target window size, timesteps to slide history window) and returns a formatte list'''
 
-    print(input_data)
+    # get nessecary shape parameters into named varible for ease of use
     history_size = shape_parameters['history_size']
     target_size = shape_parameters['target_size']
     step = shape_parameters['step']
 
+    # empty dataframe to hold samples
     data_list = []
 
     # break dataframe into spatial bins by lat lon
     spatial_bins = input_data.groupby(['lat', 'lon'])
 
-    # loop on spatial bins and split each into test and training
-    # sets
+    # loop on spatial bins and split each into test and training sets
     for bin_name, spatial_bin in spatial_bins:
 
         # sort bin by date and convert to numpy array
@@ -43,23 +43,5 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
             bin_data.append(spatial_bin[indices])
         # add to master
         data_list.append(np.array(bin_data))
-
-    '''Trim the number of samples in each bin so that they are all the same.
-    at the same time, reshape y so that it's first axis is the number of samples
-    and the second is number of spatial bins'''
-
-    sample_sizes = []
-
-    for sample in data_list:
-        sample_sizes.append(sample.shape[0])
-
-    smallest_sample = min(sample_sizes)
-    print(smallest_sample)
-
-    trimmed_data_list = []
-
-    for sample in data_list:
-        trimmed_sample = sample[-smallest_sample:, :]
-        trimmed_data_list.append(trimmed_sample)
 
     return data_list

@@ -17,7 +17,8 @@ from data.format_for_lstm import format_data
 from prediction.predict_ignition_risk import predict
 from prediction.format_predictions_for_api import format_for_api
 
-TODAY = date.today()
+TODAY = str(date.today())
+print(f'Running prediction pipeline for: {TODAY}')
 
 
 class GetWeatherData(luigi.Task):
@@ -76,9 +77,10 @@ class ParseWeatherData(luigi.Task):
         output_data = parse_data(
             input_data, config.WEATHER_DATA_COLUMN_NAMES)
 
+        print(f'Will save parsed weather data to: {self.output().path}')
+        print(output_data.head())
         # write output
-        with self.output().open('w') as output_file:
-            output_data.to_parquet(output_file)
+        output_data.to_parquet(self.output().path)
 
 
 class ScaleWeatherFeatures(luigi.Task):
@@ -97,8 +99,8 @@ class ScaleWeatherFeatures(luigi.Task):
         return luigi.LocalTarget(output_file)
 
     def run(self):
-        with self.input().open('r') as input_file:
-            input_data = pd.read_parquet(input_file)
+        # load parsed weather data
+        input_data = pd.read_parquet(self.input().path)
 
         # load box cox transformer and min max scalers which were used
         # to scale the training data - this way our live prediction data
@@ -112,8 +114,7 @@ class ScaleWeatherFeatures(luigi.Task):
             input_data, features_to_scale, quantile_tansformer, min_max_scaler)
 
         # write result
-        with self.output().open('w') as output_file:
-            output_data.to_parquet(output_file, index)
+        output_data.to_parquet(self.output().path)
 
 
 class OneHotEncodeMonth(luigi.Task):
@@ -131,15 +132,13 @@ class OneHotEncodeMonth(luigi.Task):
 
     def run(self):
         # read scaled weather data
-        with self.input().open('r') as input_file:
-            input_data = pd.read_parquet(input_file)
+        input_data = pd.read_parquet(self.input().path)
 
         # run fucntion to one hot encode month
         output_data = onehot_month(input_data)
 
         # write result to disk
-        with self.output().open('w') as output_file:
-            output_data.to_parquet(output_file, index)
+        output_data.to_parquet(self.output().path)
 
 
 class FormatForLSTM(luigi.Task):
@@ -157,8 +156,7 @@ class FormatForLSTM(luigi.Task):
 
     def run(self):
         # read input data
-        with self.input().open('r') as input_file:
-            input_data = pd.read_parquet(input_file)
+        input_data = pd.read_parquet(self.input().path)
 
         # load target shape parameters for numpy array
         input_shape_parameters = config.LSTM_INPUT_SHAPE_PARAMETERS
@@ -184,7 +182,7 @@ class Predict(luigi.Task):
 
     def output(self):
         # writes predictions to npy file named after today's date
-        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}{TOADY}_predictions.npy"
+        output_file = f"{config.IGNITION_RISK_PREDICTIONS_DIR}{TODAY}_predictions.npy"
         return luigi.LocalTarget(output_file, format=luigi.format.Nop)
 
     def run(self):
@@ -236,9 +234,11 @@ class FormatPredictionsForAPI(luigi.Task):
         # run fucntion to format predictions
         output_data = format_for_api(input_data, lat_lon_bins)
 
+        print(output_data.head())
+        print(output_data.info())
+
         # write result to disk
-        with self.output().open('w') as output_file:
-            output_data.to_parquet(output_file)
+        output_data.to_parquet(self.output().path)
 
 
 if __name__ == '__main__':

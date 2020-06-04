@@ -4,6 +4,9 @@ from sklearn.preprocessing import OneHotEncoder
 
 
 def onehot_month(data: 'DataFrame') -> 'DataFrame':
+    '''Takes dataframe with pandas datetime column and 
+    onehot encodes month. Returns dataframe'''
+
     month_names = [
         'January',
         'February',
@@ -19,6 +22,8 @@ def onehot_month(data: 'DataFrame') -> 'DataFrame':
         'December'
     ]
 
+    # setup onehot encoder using 12 catagories for the months
+    # and output dtype of single precision float
     onehot_encoder = OneHotEncoder(
         categories=[np.arange(1, 13, 1)],
         sparse=False,
