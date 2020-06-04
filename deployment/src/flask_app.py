@@ -7,24 +7,25 @@ import json
 
 app = Flask(__name__)
 
-with open('../data/predictions/formatted_predictions.csv') as input_file:
-    predictions = pd.read_csv(input_file)
+input_file = '../data/predictions/2020-06-03_formatted_predictions.parquet'
+predictions = pd.read_parquet(input_file)
 
-lat_lon_bins = predictions[['lat', 'lon']].to_numpy()
+lat_lon_bins = predictions[['lat', 'lon']].astype(float).to_numpy()
 predictions['day'] = pd.to_datetime(predictions['day'])
+predictions['lat'] = predictions['lat'].astype(float)
+predictions['lon'] = predictions['lon'].astype(float)
+print(predictions)
 
 
 @app.route('/fire_risk_by_location')
 def fire_risk_by_location(methods=['GET']):
-    # http://192.168.1.238:9998/fire_risk_by_location?lat=72.1&lon=-124.1
+    # http://72.132.251:9998:9998/fire_risk_by_location?lat=34.067&lon=-114.6695
     lat = float(request.args.get('lat'))
     lon = float(request.args.get('lon'))
 
     query_coords = [lat, lon]
     distance, index = spatial.KDTree(lat_lon_bins).query(query_coords)
-
     bin_lat = lat_lon_bins[index][0]
-    bin_lon = lat_lon_bins[index][1]
 
     result = predictions[(predictions['lat'] == bin_lat)
                          & (predictions['lon'] == bin_lon)]
@@ -36,7 +37,7 @@ def fire_risk_by_location(methods=['GET']):
 
 @app.route('/fire_risk_by_date')
 def fire_risk_by_date(methods=['GET']):
-    # http://192.168.1.238:9998/fire_risk_by_date?start=2020-05-29&end=202-06-2
+    # http://72.132.251:9998/fire_risk_by_date?start=2020-06-06&end=2020-06-07
     start_date = pd.to_datetime(request.args.get('start'))
     end_date = pd.to_datetime(request.args.get('end'))
 
