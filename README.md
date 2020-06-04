@@ -13,26 +13,33 @@ Wild fires are common, destructive and deadly natural disasters. Current meteoro
 
 ## Project Description
 
-This project is currently in the deployment phase.
+This project uses a parallel LSTM neural network to predict geospatialy resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API.
 
-See the full [project proposal](https://github.com/gperdrizet/wildfire/tree/master/docs/project_proposal.md) for more info.
+### [Featured notebooks](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks)
+
+Read the [project proposal](https://github.com/gperdrizet/wildfire_production/blob/master/project_info/project_proposal.md)
+Look at the [project walkthrough]
 
 ## Data Sources
 1. Historical wildfire activity: United States Department of Agriculture Research Data Archive, [*Spatial wildfire occurrence data for the United States, 1992-2015*](https://www.fs.usda.gov/rds/archive/catalog/RDS-2013-0009.4)<sup>1</sup>
 2. Historical metrology data: National Oceanic and Atmospheric Administration, [*North American Regional Reanalysis*](https://catalog.data.gov/dataset/ncep-north-american-regional-reanalysis-narr)<sup>2</sup>
 
-## Featured Notebooks
-
-* [Training data exploratory analysis](https://github.com/gperdrizet/wildfire/tree/master/notebooks/training_data_exploration.ipynb)
 
 ### Methods Used
 
 * Machine Learning
-* Data Visualization
+* Gradient boosted decision trees
+* Deep neural networks
+* Parallel long short term memory neural networks
 * Cartographic Projection
 * Time Series Analysis
 * Feature Engineering
-* Predictive Modeling
+* Hyperparameter optimization
+* Metaparameter optimization
+* Gaussian process optimization
+* Cox-Box quantile normalization
+* Kolmogorov–Smirnov
+* Recursive sample stratification
 
 ### Technologies
 
