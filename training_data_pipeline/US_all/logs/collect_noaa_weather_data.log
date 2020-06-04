@@ -1,0 +1,773 @@
+INFO:root: 1998, air.sfc
+INFO:root: 1999, air.sfc
+INFO:root: Data for 1992 exits, skipping parse
+INFO:root: 2000, air.sfc
+INFO:root: 2001, air.sfc
+INFO:root: Data for 1993 exits, skipping parse
+INFO:root: Data for 1994 exits, skipping parse
+INFO:root: 2002, air.sfc
+INFO:root: 2003, air.sfc
+INFO:root: Data for 1995 exits, skipping parse
+INFO:root: 2009, air.sfc
+INFO:root: 2008, air.sfc
+INFO:root: 2005, air.sfc
+INFO:root: 2004, air.sfc
+INFO:root: 2010, air.sfc
+INFO:root: Data for 1996 exits, skipping parse
+INFO:root: 2011, air.sfc
+INFO:root: 2007, air.sfc
+INFO:root: 2006, air.sfc
+INFO:root: Data for 1997 exits, skipping parse
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2009.us_only.parquet
+INFO:root: 2012, air.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2011.us_only.parquet
+INFO:root: 2013, air.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2008.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.1999.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2010.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2001.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.1998.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2013.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2012.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2003.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2000.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2005.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2007.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2002.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2004.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2006.us_only.parquet
+INFO:root: 2011, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2011.us_only.parquet
+INFO:root: 2012, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2012.us_only.parquet
+INFO:root: 2009, air.2m
+INFO:root: 2010, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2009.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2010.us_only.parquet
+INFO:root: 2013, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2013.us_only.parquet
+INFO:root: 2000, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2000.us_only.parquet
+INFO:root: 2001, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2001.us_only.parquet
+INFO:root: 1999, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.1999.us_only.parquet
+INFO:root: 2002, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2002.us_only.parquet
+INFO:root: 1998, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.1998.us_only.parquet
+INFO:root: 2005, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2005.us_only.parquet
+INFO:root: 2003, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2003.us_only.parquet
+INFO:root: 2007, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2007.us_only.parquet
+INFO:root: 2004, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2004.us_only.parquet
+INFO:root: 2008, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2008.us_only.parquet
+INFO:root: 2006, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2006.us_only.parquet
+INFO:root: 2014, air.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2014.us_only.parquet
+INFO:root: 2014, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2014.us_only.parquet
+INFO:root: 1998, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.1998.us_only.parquet
+INFO:root: 2006, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2006.us_only.parquet
+INFO:root: 2000, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2000.us_only.parquet
+INFO:root: 2002, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2002.us_only.parquet
+INFO:root: 2004, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2004.us_only.parquet
+INFO:root: 2005, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2005.us_only.parquet
+INFO:root: 2007, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2007.us_only.parquet
+INFO:root: 2008, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2008.us_only.parquet
+INFO:root: 2003, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2003.us_only.parquet
+INFO:root: 2013, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2013.us_only.parquet
+INFO:root: 2001, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2001.us_only.parquet
+INFO:root: 2009, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2009.us_only.parquet
+INFO:root: 2012, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2012.us_only.parquet
+INFO:root: 2011, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2011.us_only.parquet
+INFO:root: 1999, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.1999.us_only.parquet
+INFO:root: 2000, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2000.us_only.parquet
+INFO:root: 1998, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.1998.us_only.parquet
+INFO:root: 2006, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2006.us_only.parquet
+INFO:root: 2008, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2008.us_only.parquet
+INFO:root: 2002, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2002.us_only.parquet
+INFO:root: 2005, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2005.us_only.parquet
+INFO:root: 2003, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2003.us_only.parquet
+INFO:root: 2009, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2009.us_only.parquet
+INFO:root: 2004, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2004.us_only.parquet
+INFO:root: 2013, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2013.us_only.parquet
+INFO:root: 2001, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2001.us_only.parquet
+INFO:root: 1999, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.1999.us_only.parquet
+INFO:root: 2012, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2012.us_only.parquet
+INFO:root: 2011, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2011.us_only.parquet
+INFO:root: 2000, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2000.us_only.parquet
+INFO:root: 1999, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.1999.us_only.parquet
+INFO:root: 2004, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2004.us_only.parquet
+INFO:root: 1998, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.1998.us_only.parquet
+INFO:root: 2006, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2006.us_only.parquet
+INFO:root: 2008, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2008.us_only.parquet
+INFO:root: 2002, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2002.us_only.parquet
+INFO:root: 2003, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2003.us_only.parquet
+INFO:root: 2005, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2005.us_only.parquet
+INFO:root: 2001, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2001.us_only.parquet
+INFO:root: 2009, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2009.us_only.parquet
+INFO:root: 2011, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2011.us_only.parquet
+INFO:root: 2013, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2013.us_only.parquet
+INFO:root: 2012, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2012.us_only.parquet
+INFO:root: 2009, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2009.us_only.parquet
+INFO:root: 2004, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2004.us_only.parquet
+INFO:root: 1999, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.1999.us_only.parquet
+INFO:root: 2003, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2003.us_only.parquet
+INFO:root: 2006, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2006.us_only.parquet
+INFO:root: 2000, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2000.us_only.parquet
+INFO:root: 1998, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.1998.us_only.parquet
+INFO:root: 2002, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2002.us_only.parquet
+INFO:root: 2008, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2008.us_only.parquet
+INFO:root: 2011, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2011.us_only.parquet
+INFO:root: 2005, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2005.us_only.parquet
+INFO:root: 2001, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2001.us_only.parquet
+INFO:root: 2013, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2013.us_only.parquet
+INFO:root: 2012, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2012.us_only.parquet
+INFO:root: 2000, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2000.us_only.parquet
+INFO:root: 2009, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2009.us_only.parquet
+INFO:root: 2003, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2003.us_only.parquet
+INFO:root: 2002, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2002.us_only.parquet
+INFO:root: 1998, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.1998.us_only.parquet
+INFO:root: 2004, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2004.us_only.parquet
+INFO:root: 2006, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2006.us_only.parquet
+INFO:root: 1999, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.1999.us_only.parquet
+INFO:root: 2011, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2011.us_only.parquet
+INFO:root: 2005, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2005.us_only.parquet
+INFO:root: 2008, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2008.us_only.parquet
+INFO:root: 2013, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2013.us_only.parquet
+INFO:root: 2001, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2001.us_only.parquet
+INFO:root: 2012, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2012.us_only.parquet
+INFO:root: 2003, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2003.us_only.parquet
+INFO:root: 2009, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2009.us_only.parquet
+INFO:root: 1999, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.1999.us_only.parquet
+INFO:root: 2000, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2000.us_only.parquet
+INFO:root: 2002, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2002.us_only.parquet
+INFO:root: 1998, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.1998.us_only.parquet
+INFO:root: 2006, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2006.us_only.parquet
+INFO:root: 2011, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2011.us_only.parquet
+INFO:root: 2004, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2004.us_only.parquet
+INFO:root: 2008, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2008.us_only.parquet
+INFO:root: 2005, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2005.us_only.parquet
+INFO:root: 2012, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2012.us_only.parquet
+INFO:root: 2001, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2001.us_only.parquet
+INFO:root: 2013, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2013.us_only.parquet
+INFO:root: 2003, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2003.us_only.parquet
+INFO:root: 1999, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.1999.us_only.parquet
+INFO:root: 2000, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2000.us_only.parquet
+INFO:root: 2009, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2009.us_only.parquet
+INFO:root: 2004, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2004.us_only.parquet
+INFO:root: 2006, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2006.us_only.parquet
+INFO:root: 1998, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.1998.us_only.parquet
+INFO:root: 2011, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2011.us_only.parquet
+INFO:root: 2012, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2012.us_only.parquet
+INFO:root: 2008, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2008.us_only.parquet
+INFO:root: 2001, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2001.us_only.parquet
+INFO:root: 2013, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2013.us_only.parquet
+INFO:root: 2005, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2005.us_only.parquet
+INFO:root: 2003, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2003.us_only.parquet
+INFO:root: 2000, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2000.us_only.parquet
+INFO:root: 2004, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2004.us_only.parquet
+INFO:root: 1999, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.1999.us_only.parquet
+INFO:root: 2009, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2009.us_only.parquet
+INFO:root: 2006, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2006.us_only.parquet
+INFO:root: 1998, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.1998.us_only.parquet
+INFO:root: 2013, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2013.us_only.parquet
+INFO:root: 2012, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2012.us_only.parquet
+INFO:root: 2001, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2001.us_only.parquet
+INFO:root: 2008, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2008.us_only.parquet
+INFO:root: 2005, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2005.us_only.parquet
+INFO:root: 2003, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2003.us_only.parquet
+INFO:root: 2011, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2011.us_only.parquet
+INFO:root: 2000, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2000.us_only.parquet
+INFO:root: 2004, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2004.us_only.parquet
+INFO:root: 2013, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2013.us_only.parquet
+INFO:root: 1998, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.1998.us_only.parquet
+INFO:root: 2009, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2009.us_only.parquet
+INFO:root: 1999, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.1999.us_only.parquet
+INFO:root: 2006, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2006.us_only.parquet
+INFO:root: 2012, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2012.us_only.parquet
+INFO:root: 2005, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2005.us_only.parquet
+INFO:root: 2001, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2001.us_only.parquet
+INFO:root: 2011, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2011.us_only.parquet
+INFO:root: 2008, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2008.us_only.parquet
+INFO:root: 2003, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2003.us_only.parquet
+INFO:root: 2004, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2004.us_only.parquet
+INFO:root: 2000, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2000.us_only.parquet
+INFO:root: 2013, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2013.us_only.parquet
+INFO:root: 1998, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.1998.us_only.parquet
+INFO:root: 1999, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.1999.us_only.parquet
+INFO:root: 2001, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2001.us_only.parquet
+INFO:root: 2003, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2003.us_only.parquet
+INFO:root: 2006, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2006.us_only.parquet
+INFO:root: 2012, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2012.us_only.parquet
+INFO:root: 2005, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2005.us_only.parquet
+INFO:root: 2008, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2008.us_only.parquet
+INFO:root: 2004, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2004.us_only.parquet
+INFO:root: 2011, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2011.us_only.parquet
+INFO:root: 2000, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2000.us_only.parquet
+INFO:root: 2006, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2006.us_only.parquet
+INFO:root: 2013, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2013.us_only.parquet
+INFO:root: 2005, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2005.us_only.parquet
+INFO:root: 2008, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2008.us_only.parquet
+INFO:root: 1998, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.1998.us_only.parquet
+INFO:root: 2004, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2004.us_only.parquet
+INFO:root: 2001, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2001.us_only.parquet
+INFO:root: 1999, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.1999.us_only.parquet
+INFO:root: 2012, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2012.us_only.parquet
+INFO:root: 2011, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2011.us_only.parquet
+INFO:root: 2003, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2003.us_only.parquet
+INFO:root: 2013, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2013.us_only.parquet
+INFO:root: 1998, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.1998.us_only.parquet
+INFO:root: 2000, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2000.us_only.parquet
+INFO:root: 2005, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2005.us_only.parquet
+INFO:root: 2006, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2006.us_only.parquet
+INFO:root: 2012, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2012.us_only.parquet
+INFO:root: 2011, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2011.us_only.parquet
+INFO:root: 1999, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.1999.us_only.parquet
+INFO:root: 2001, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2001.us_only.parquet
+INFO:root: 2008, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2008.us_only.parquet
+INFO:root: 2004, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2004.us_only.parquet
+INFO:root: 2003, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2003.us_only.parquet
+INFO:root: 2013, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2013.us_only.parquet
+INFO:root: 1998, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.1998.us_only.parquet
+INFO:root: 2000, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2000.us_only.parquet
+INFO:root: 2005, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2005.us_only.parquet
+INFO:root: 1999, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.1999.us_only.parquet
+INFO:root: 2006, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2006.us_only.parquet
+INFO:root: 2001, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2001.us_only.parquet
+INFO:root: 2012, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2012.us_only.parquet
+INFO:root: 2011, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2011.us_only.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2004_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2004_us_only_all.parquet
+INFO:root: 2008, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2008.us_only.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2000_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2000_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/1998_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/1998_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2005_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2005_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2013_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2013_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/1999_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/1999_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2006_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2006_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2012_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2012_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2001_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2001_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2011_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2011_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2008_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2008_us_only_all.parquet
+INFO:root: Data for 1993 exits, skipping parse
+INFO:root: Data for 2005 exits, skipping parse
+INFO:root: Data for 1994 exits, skipping parse
+INFO:root: Data for 1992 exits, skipping parse
+INFO:root: 2002, air.sfc
+INFO:root: Data for 1995 exits, skipping parse
+INFO:root: 2003, air.sfc
+INFO:root: 2009, air.sfc
+INFO:root: Data for 2011 exits, skipping parse
+INFO:root: Data for 2012 exits, skipping parse
+INFO:root: 2010, air.sfc
+INFO:root: Data for 1996 exits, skipping parse
+INFO:root: Data for 1997 exits, skipping parse
+INFO:root: Data for 1998 exits, skipping parse
+INFO:root: Data for 2013 exits, skipping parse
+INFO:root: 2014, air.sfc
+INFO:root: 2007, air.sfc
+INFO:root: Data for 2000 exits, skipping parse
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2009.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2014.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2002.us_only.parquet
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2010.us_only.parquet
+INFO:root: Data for 1999 exits, skipping parse
+INFO:root: Data for 2004 exits, skipping parse
+INFO:root: Data for 2001 exits, skipping parse
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2003.us_only.parquet
+INFO:root: Data for 2006 exits, skipping parse
+INFO:root: Data for 2008 exits, skipping parse
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.sfc.2007.us_only.parquet
+INFO:root: 2014, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2014.us_only.parquet
+INFO:root: 2003, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2003.us_only.parquet
+INFO:root: 2007, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2007.us_only.parquet
+INFO:root: 2002, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2002.us_only.parquet
+INFO:root: 2009, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2009.us_only.parquet
+INFO:root: 2010, air.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/air.2m.2010.us_only.parquet
+INFO:root: 2014, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2014.us_only.parquet
+INFO:root: 2003, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2003.us_only.parquet
+INFO:root: 2010, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2010.us_only.parquet
+INFO:root: 2002, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2002.us_only.parquet
+INFO:root: 2009, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2009.us_only.parquet
+INFO:root: 2007, apcp
+INFO:root: Input: ../data/NOAA_weather_data/scratch/apcp.2007.us_only.parquet
+INFO:root: 2014, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2014.us_only.parquet
+INFO:root: 2003, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2003.us_only.parquet
+INFO:root: 2002, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2002.us_only.parquet
+INFO:root: 2009, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2009.us_only.parquet
+INFO:root: 2010, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2010.us_only.parquet
+INFO:root: 2007, crain
+INFO:root: Input: ../data/NOAA_weather_data/scratch/crain.2007.us_only.parquet
+INFO:root: 2014, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2014.us_only.parquet
+INFO:root: 2003, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2003.us_only.parquet
+INFO:root: 2002, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2002.us_only.parquet
+INFO:root: 2007, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2007.us_only.parquet
+INFO:root: 2010, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2010.us_only.parquet
+INFO:root: 2009, rhum.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/rhum.2m.2009.us_only.parquet
+INFO:root: 2014, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2014.us_only.parquet
+INFO:root: 2003, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2003.us_only.parquet
+INFO:root: 2002, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2002.us_only.parquet
+INFO:root: 2010, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2010.us_only.parquet
+INFO:root: 2009, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2009.us_only.parquet
+INFO:root: 2007, dpt.2m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/dpt.2m.2007.us_only.parquet
+INFO:root: 2014, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2014.us_only.parquet
+INFO:root: 2003, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2003.us_only.parquet
+INFO:root: 2002, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2002.us_only.parquet
+INFO:root: 2010, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2010.us_only.parquet
+INFO:root: 2009, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2009.us_only.parquet
+INFO:root: 2007, pres.sfc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/pres.sfc.2007.us_only.parquet
+INFO:root: 2014, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2014.us_only.parquet
+INFO:root: 2003, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2003.us_only.parquet
+INFO:root: 2002, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2002.us_only.parquet
+INFO:root: 2010, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2010.us_only.parquet
+INFO:root: 2009, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2009.us_only.parquet
+INFO:root: 2007, uwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/uwnd.10m.2007.us_only.parquet
+INFO:root: 2014, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2014.us_only.parquet
+INFO:root: 2003, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2003.us_only.parquet
+INFO:root: 2002, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2002.us_only.parquet
+INFO:root: 2010, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2010.us_only.parquet
+INFO:root: 2009, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2009.us_only.parquet
+INFO:root: 2007, vwnd.10m
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vwnd.10m.2007.us_only.parquet
+INFO:root: 2014, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2014.us_only.parquet
+INFO:root: 2003, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2003.us_only.parquet
+INFO:root: 2002, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2002.us_only.parquet
+INFO:root: 2010, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2010.us_only.parquet
+INFO:root: 2009, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2009.us_only.parquet
+INFO:root: 2007, veg
+INFO:root: Input: ../data/NOAA_weather_data/scratch/veg.2007.us_only.parquet
+INFO:root: 2014, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2014.us_only.parquet
+INFO:root: 2003, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2003.us_only.parquet
+INFO:root: 2002, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2002.us_only.parquet
+INFO:root: 2010, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2010.us_only.parquet
+INFO:root: 2009, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2009.us_only.parquet
+INFO:root: 2007, lcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/lcdc.2007.us_only.parquet
+INFO:root: 2010, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2010.us_only.parquet
+INFO:root: 2014, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2014.us_only.parquet
+INFO:root: 2003, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2003.us_only.parquet
+INFO:root: 2002, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2002.us_only.parquet
+INFO:root: 2009, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2009.us_only.parquet
+INFO:root: 2007, hcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/hcdc.2007.us_only.parquet
+INFO:root: 2010, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2010.us_only.parquet
+INFO:root: 2014, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2014.us_only.parquet
+INFO:root: 2003, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2003.us_only.parquet
+INFO:root: 2002, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2002.us_only.parquet
+INFO:root: 2009, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2009.us_only.parquet
+INFO:root: 2007, mcdc
+INFO:root: Input: ../data/NOAA_weather_data/scratch/mcdc.2007.us_only.parquet
+INFO:root: 2010, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2010.us_only.parquet
+INFO:root: 2003, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2003.us_only.parquet
+INFO:root: 2014, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2014.us_only.parquet
+INFO:root: 2002, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2002.us_only.parquet
+INFO:root: 2009, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2009.us_only.parquet
+INFO:root: 2007, prate
+INFO:root: Input: ../data/NOAA_weather_data/scratch/prate.2007.us_only.parquet
+INFO:root: 2010, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2010.us_only.parquet
+INFO:root: 2003, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2003.us_only.parquet
+INFO:root: 2014, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2014.us_only.parquet
+INFO:root: 2002, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2002.us_only.parquet
+INFO:root: 2007, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2007.us_only.parquet
+INFO:root: 2009, vis
+INFO:root: Input: ../data/NOAA_weather_data/scratch/vis.2009.us_only.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2014_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2014_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2003_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2003_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2010_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2010_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2002_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2002_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2007_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2007_us_only_all.parquet
+INFO:root: Output: ../data/NOAA_weather_data/scratch/2009_us_only_all.parquet
+INFO:root:../data/NOAA_weather_data/scratch/2009_us_only_all.parquet
+INFO:root: Data for 1992 exits, skipping parse
+INFO:root: Data for 1993 exits, skipping parse
+INFO:root: Data for 1994 exits, skipping parse
+INFO:root: Data for 2008 exits, skipping parse
+INFO:root: Data for 2009 exits, skipping parse
+INFO:root: Data for 2011 exits, skipping parse
+INFO:root: Data for 2012 exits, skipping parse
+INFO:root: Data for 1997 exits, skipping parse
+INFO:root: Data for 2013 exits, skipping parse
+INFO:root: Data for 2014 exits, skipping parse
+INFO:root: Data for 1995 exits, skipping parse
+INFO:root: Data for 2004 exits, skipping parse
+INFO:root: Data for 1999 exits, skipping parse
+INFO:root: Data for 1996 exits, skipping parse
+INFO:root: Data for 2000 exits, skipping parse
+INFO:root: Data for 2002 exits, skipping parse
+INFO:root: Data for 1998 exits, skipping parse
+INFO:root: Data for 2001 exits, skipping parse
+INFO:root: Data for 2003 exits, skipping parse
+INFO:root: Data for 2007 exits, skipping parse
+INFO:root: Data for 2005 exits, skipping parse
+INFO:root: Data for 2006 exits, skipping parse
+INFO:root: Data for 2010 exits, skipping parse
+INFO:root: Data for 1993 exits, skipping parse
+INFO:root: Data for 1992 exits, skipping parse
+INFO:root: Data for 2005 exits, skipping parse
+INFO:root: Data for 1994 exits, skipping parse
+INFO:root: Data for 1996 exits, skipping parse
+INFO:root: Data for 1995 exits, skipping parse
+INFO:root: Data for 2008 exits, skipping parse
+INFO:root: Data for 1997 exits, skipping parse
+INFO:root: Data for 1998 exits, skipping parse
+INFO:root: Data for 2010 exits, skipping parse
+INFO:root: Data for 2011 exits, skipping parse
+INFO:root: Data for 2000 exits, skipping parse
+INFO:root: Data for 2012 exits, skipping parse
+INFO:root: Data for 2013 exits, skipping parse
+INFO:root: Data for 2014 exits, skipping parse
+INFO:root: Data for 1999 exits, skipping parse
+INFO:root: Data for 2002 exits, skipping parse
+INFO:root: Data for 2004 exits, skipping parse
+INFO:root: Data for 2001 exits, skipping parse
+INFO:root: Data for 2006 exits, skipping parse
+INFO:root: Data for 2007 exits, skipping parse
+INFO:root: Data for 2003 exits, skipping parse
+INFO:root: Data for 2009 exits, skipping parse
+INFO:root: Data for 1992 exits, skipping parse
+INFO:root: Data for 1993 exits, skipping parse
+INFO:root: Data for 1994 exits, skipping parse
+INFO:root: Data for 1996 exits, skipping parse
+INFO:root: Data for 1995 exits, skipping parse
+INFO:root: Data for 2008 exits, skipping parse
+INFO:root: Data for 2009 exits, skipping parse
+INFO:root: Data for 1997 exits, skipping parse
+INFO:root: Data for 1998 exits, skipping parse
+INFO:root: Data for 2010 exits, skipping parse
+INFO:root: Data for 2011 exits, skipping parse
+INFO:root: Data for 2012 exits, skipping parse
+INFO:root: Data for 2013 exits, skipping parse
+INFO:root: Data for 2014 exits, skipping parse
+INFO:root: Data for 2000 exits, skipping parse
+INFO:root: Data for 2002 exits, skipping parse
+INFO:root: Data for 1999 exits, skipping parse
+INFO:root: Data for 2004 exits, skipping parse
+INFO:root: Data for 2001 exits, skipping parse
+INFO:root: Data for 2003 exits, skipping parse
+INFO:root: Data for 2005 exits, skipping parse
+INFO:root: Data for 2007 exits, skipping parse
+INFO:root: Data for 2006 exits, skipping parse
+INFO:root: Data for 1992 exits, skipping parse
+INFO:root: Data for 1994 exits, skipping parse
+INFO:root: Data for 1993 exits, skipping parse
+INFO:root: Data for 1997 exits, skipping parse
+INFO:root: Data for 1996 exits, skipping parse
+INFO:root: Data for 2008 exits, skipping parse
+INFO:root: Data for 2009 exits, skipping parse
+INFO:root: Data for 1995 exits, skipping parse
+INFO:root: Data for 1999 exits, skipping parse
+INFO:root: Data for 2000 exits, skipping parse
+INFO:root: Data for 2002 exits, skipping parse
+INFO:root: Data for 1998 exits, skipping parse
+INFO:root: Data for 2011 exits, skipping parse
+INFO:root: Data for 2010 exits, skipping parse
+INFO:root: Data for 2001 exits, skipping parse
+INFO:root: Data for 2012 exits, skipping parse
+INFO:root: Data for 2003 exits, skipping parse
+INFO:root: Data for 2005 exits, skipping parse
+INFO:root: Data for 2006 exits, skipping parse
+INFO:root: 2015, air.sfc
+INFO:root: Data for 2013 exits, skipping parse
+INFO:root: Data for 2004 exits, skipping parse
+INFO:root: Data for 2014 exits, skipping parse
+INFO:root: Data for 2007 exits, skipping parse
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2015.us_only.parquet
+INFO:root: 2015, air.2m
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/air.2m.2015.us_only.parquet
+INFO:root: 2015, apcp
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/apcp.2015.us_only.parquet
+INFO:root: 2015, crain
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/crain.2015.us_only.parquet
+INFO:root: 2015, rhum.2m
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/rhum.2m.2015.us_only.parquet
+INFO:root: 2015, dpt.2m
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/dpt.2m.2015.us_only.parquet
+INFO:root: 2015, pres.sfc
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/pres.sfc.2015.us_only.parquet
+INFO:root: 2015, uwnd.10m
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/uwnd.10m.2015.us_only.parquet
+INFO:root: 2015, vwnd.10m
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/vwnd.10m.2015.us_only.parquet
+INFO:root: 2015, veg
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/veg.2015.us_only.parquet
+INFO:root: 2015, lcdc
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/lcdc.2015.us_only.parquet
+INFO:root: 2015, hcdc
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/hcdc.2015.us_only.parquet
+INFO:root: 2015, mcdc
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/mcdc.2015.us_only.parquet
+INFO:root: 2015, prate
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/prate.2015.us_only.parquet
+INFO:root: 2015, vis
+INFO:root: Input: /mnt/SSD/data/NOAA_weather_data/scratch/vis.2015.us_only.parquet
+INFO:root: Output: /mnt/SSD/data/NOAA_weather_data/scratch/2015_us_only_all.parquet
+INFO:root:/mnt/SSD/data/NOAA_weather_data/scratch/2015_us_only_all.parquet

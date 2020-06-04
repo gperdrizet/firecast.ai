@@ -1,0 +1,207 @@
+INFO:root: DATA_TYPES contains {'air.sfc': 'float32', 'air.2m': 'float32', 'apcp': 'float32', 'crain': 'bool', 'rhum.2m': 'float32', 'dpt.2m': 'float32', 'pres.sfc': 'float32', 'uwnd.10m': 'float32', 'vwnd.10m': 'float32', 'veg': 'float32', 'lcdc': 'float32', 'hcdc': 'float32', 'mcdc': 'float32', 'prate': 'float32', 'vis': 'float32'}
+INFO:root: Parsing data from 1992
+INFO:root: Parsing data from 1994
+INFO:root: Parsing data from 1996
+INFO:root: Parsing data from 1998
+INFO:root: Parsing data from 2000
+INFO:root: Parsing data from 2002
+INFO:root: Parsing data from 2004
+INFO:root: Parsing data from 2006
+INFO:root: Parsing data from 2008
+INFO:root: Parsing data from 2012
+INFO:root: Parsing data from 2010
+INFO:root: Parsing data from 2014
+INFO:root: DATA_TYPES contains {'air.sfc': 'float32', 'air.2m': 'float32', 'apcp': 'float32', 'crain': 'bool', 'rhum.2m': 'float32', 'dpt.2m': 'float32', 'pres.sfc': 'float32', 'uwnd.10m': 'float32', 'vwnd.10m': 'float32', 'veg': 'float32', 'lcdc': 'float32', 'hcdc': 'float32', 'mcdc': 'float32', 'prate': 'float32', 'vis': 'float32'}
+INFO:root: Parsing data from 1992
+INFO:root: Parsing data from 1994
+INFO:root: Parsing data from 1996
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1992.nc
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1994.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1992.parquet
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1996.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1994.parquet
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1996.parquet
+INFO:root: Parsing data from 1998
+INFO:root: Parsing data from 2000
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1998.nc
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2000.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.1998.parquet
+INFO:root: Parsing data from 2002
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2000.parquet
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2002.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2002.parquet
+INFO:root: Parsing data from 2004
+INFO:root: Parsing data from 2006
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2004.nc
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2006.nc
+INFO:root: Parsing data from 2008
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2004.parquet
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2006.parquet
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2008.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2008.parquet
+INFO:root: Parsing data from 2010
+INFO:root: Parsing data from 2012
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2010.nc
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2012.nc
+INFO:root: Parsing data from 2014
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2010.parquet
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2012.parquet
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2014.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/scratch/air.sfc.2014.parquet
+INFO:root: DATA_TYPES contains {'air.sfc': 'float32', 'air.2m': 'float32', 'apcp': 'float32', 'crain': 'bool', 'rhum.2m': 'float32', 'dpt.2m': 'float32', 'pres.sfc': 'float32', 'uwnd.10m': 'float32', 'vwnd.10m': 'float32', 'veg': 'float32', 'lcdc': 'float32', 'hcdc': 'float32', 'mcdc': 'float32', 'prate': 'float32', 'vis': 'float32'}
+INFO:root: Parsing data from 1992
+INFO:root: Parsing data from 1994
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.1992.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.1992.parquet
+INFO:root: Parsing data from 1996
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.1994.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.1994.parquet
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.1996.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.1996.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 1998
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.1998.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.1998.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2000
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2000.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2000.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2002
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2002.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2002.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2004
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2004.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2004.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2006
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2006.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2006.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2008
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2008.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2008.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2010
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2010.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2010.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2012
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2012.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2012.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Parsing data from 2014
+INFO:root: Reading from /mnt/SSD/data/NOAA_weather_data/raw_NOAA_datafiles/air.sfc.2014.nc
+INFO:root: Writing to /mnt/SSD/data/NOAA_weather_data/parsed_NOAA_datafile/air.sfc.2014.parquet
+WARNING:py.warnings:/home/siderealyear/anaconda3/envs/wildfire/lib/python3.6/site-packages/xarray/conventions.py:494: SerializationWarning: variable 'air' has multiple fill values {9.96921e+36, -9.96921e+36}, decoding all values to NaN.
+  use_cftime=use_cftime,
+
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
+INFO:root: Dataframe has columns: ['time', 'lat', 'lon', 'air.sfc']
+INFO:root: Setting air.sfc column to type float32
+INFO:root:time       datetime64[ns]
+lat               float32
+lon               float32
+air.sfc           float32
+dtype: object
