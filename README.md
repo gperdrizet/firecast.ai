@@ -18,7 +18,7 @@ This project uses a parallel LSTM neural network to predict geospatialy resolved
 ### [Featured notebooks](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks)
 
 Read the [project proposal](https://github.com/gperdrizet/wildfire_production/blob/master/project_info/project_proposal.md)
-Look at the [project walkthrough](https://github.com/gperdrizet/wildfire_production/blob/master/project_info/project_walkthrough.ipynb)
+or look at the [project walkthrough](https://github.com/gperdrizet/wildfire_production/blob/master/project_info/project_walkthrough.ipynb).
 
 ## Data Sources
 1. Historical wildfire activity: United States Department of Agriculture Research Data Archive, [*Spatial wildfire occurrence data for the United States, 1992-2015*](https://www.fs.usda.gov/rds/archive/catalog/RDS-2013-0009.4)<sup>1</sup>

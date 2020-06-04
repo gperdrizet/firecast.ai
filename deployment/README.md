@@ -4,8 +4,8 @@
 
 The deployment will have two major components: 
 
-    1. Luigi pipeline - retrieves weather predictions via API and predicts wildfire risk using the trained pre-trained LSTM neural net.
-    2. Flask API - makes the predictions publicly available. 
+1. Luigi pipeline - retrieves weather predictions via API and predicts wildfire risk using the trained pre-trained LSTM neural net.
+2. Flask API - makes the predictions publicly available. 
        
 The Luigi data pipeline has two main inputs: weather prediction data from the OpenWeatherMap One Call API and trained model weights. The pipeline gets raw weather data, transforms and formats it for input into the neural network, runs the neural network using pre-trained weights and optimized hyperparameters and finally collects and formats the predictions for use by the API. The flask API receives updated predictions from the data pipeline accepts API calls to access the data.
 
@@ -15,12 +15,12 @@ Predictions will be archived so that model performance can be evaluated when wil
 
 The major tools needed to build and deploy this system are as follows:
 
-    1. Pandas & Numpy for data manipulation
-    2. Geopandas and Shapely for manipulation of spatial data
-    3. Xarray for meteorological data
-    4. Requests for API access
-    5. Luigi for data pipeline management
-    6. Flask for API access to prediction data
-    7. Tensorflow and Keras for prediction
+1. Pandas & Numpy for data manipulation
+2. Geopandas and Shapely for manipulation of spatial data
+3. Xarray for meteorological data
+4. Requests for API access
+5. Luigi for data pipeline management
+6. Flask for API access to prediction data
+7. Tensorflow and Keras for prediction
 
 
