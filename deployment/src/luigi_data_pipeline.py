@@ -7,9 +7,10 @@ import pandas as pd
 import config
 import keys
 
-from datetime import date
+from datetime import date, datetime, timedelta
 
-from data.get_weather_data import get_data
+from data.get_weather_data import get_weather_forecast
+from data.get_weather_data import get_past_weather
 from data.parse_weather_data import parse_data
 from data.scale_weather_features import scale_features
 from data.onehot_encode_month import onehot_month
@@ -18,11 +19,13 @@ from prediction.predict_ignition_risk import predict
 from prediction.format_predictions_for_api import format_for_api
 
 TODAY = str(date.today())
+YESTERDAY = str(date.today() - timedelta(1))
 print(f'Running prediction pipeline for: {TODAY}')
+print(f'Will get past data for: {YESTERDAY}')
 
 
-class GetWeatherData(luigi.Task):
-    '''Gets weather data from openweathermap.org API'''
+class GetWeatherForecast(luigi.Task):
+    '''Gets weather forecast data from openweathermap.org API'''
 
     def requires(self):
         # First task in pipeline, requires nothing
@@ -30,7 +33,7 @@ class GetWeatherData(luigi.Task):
 
     def output(self):
         # Output is JSON weather data file named for today's date
-        output_file = f'{config.RAW_WEATHER_DATA_DIR}{TODAY}.json'
+        output_file = f'{config.RAW_WEATHER_DATA_DIR}future/{TODAY}.json'
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -47,7 +50,40 @@ class GetWeatherData(luigi.Task):
             lat_lon_bins = list(rows)
 
         # run functions to download weather data from API
-        weather_data = get_data(key, lat_lon_bins)
+        weather_data = get_weather_forecast(key, lat_lon_bins)
+
+        # save result as JSON
+        with self.output().open('w') as output_file:
+            json.dump(weather_data, output_file)
+
+
+class GetPastWeather(luigi.Task):
+    '''Gets one day of past weather data from openweathermap.org API'''
+
+    def requires(self):
+        # First task in pipeline, requires nothing
+        return None
+
+    def output(self):
+        # Output is JSON weather data file named for today's date
+        output_file = f'{config.RAW_WEATHER_DATA_DIR}past/{YESTERDAY}.json'
+        return luigi.LocalTarget(output_file)
+
+    def run(self):
+        # get API key as string
+        key = keys.OPENWEATHER_API_KEY
+
+        # file name string for files contating the latitude, longitude corrdinates
+        # we need to get weather data for
+        lat_lon_bin_file = config.LAT_LON_BINS_FILE
+
+        # read lat, lon bins into list
+        with open(lat_lon_bin_file, 'r') as lat_lon_bins_file:
+            rows = csv.reader(lat_lon_bins_file)
+            lat_lon_bins = list(rows)
+
+        # run functions to download weather data from API
+        weather_data = get_past_weather(key, lat_lon_bins)
 
         # save result as JSON
         with self.output().open('w') as output_file:

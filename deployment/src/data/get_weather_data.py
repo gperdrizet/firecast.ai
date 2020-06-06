@@ -1,30 +1,25 @@
 import json
 import requests
 import time
-import datetime
+from datetime import datetime, timedelta
 
 
-def get_data(key: str, lat_lon_bins: list) -> list:
-    '''Takes list of lat, lon bins and API key. Returns list
-    of JSON dicts.
+def get_weather_forecast(key: str, lat_lon_bins: list) -> list:
+    '''Takes list of lat, lon bins and API key. Returns 
+    corresponding 7 day weather forecast data as list of 
+    JSON dicts.'''
 
-    Time span is 7 days future and 5 days past from current date.'''
-
-    # Construct list of target dates
+    # empyt list to hold incomming data
     responses = []
-    days = 5
-    date_today = datetime.datetime.today()
-    date_list = [int((date_today - datetime.timedelta(days=x)).timestamp())
-                 for x in range(days)]
-
-    print(f'Will get weather forecast data for: {date_list}')
+    date_today = datetime.today().strftime('%Y-%m-%d')
+    print(f'Will get 7 day weather forecast data starting: {date_today}')
 
     # loop on lat lon bins to get data
     for lat_lon_bin in lat_lon_bins:
         lat = lat_lon_bin[0]
         lon = lat_lon_bin[1]
 
-        # first, get 7 days of prediction data - API allows this all in one call
+        # get 7 days of prediction data - API allows this all in one call
         url = f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly&appid={key}'
 
         try:
@@ -34,7 +29,7 @@ def get_data(key: str, lat_lon_bins: list) -> list:
             raise SystemExit(error)
 
         # get response as string and load into JSON object, append to response list
-        print(f'Got forecast for: {lat}, {lon}')
+        print(f'Got 7 day forecast for: {date_today} - {lat}, {lon}')
         text = response.text
         data = json.loads(text)
         responses.append(data)
@@ -42,25 +37,41 @@ def get_data(key: str, lat_lon_bins: list) -> list:
         # wait, so we don't hit the API server too hard
         time.sleep(1)
 
-        # loop on target dates to get past weather data - API does not allow one
-        # call or a date range here, must get 24 hrs of data by day
-        for date in date_list:
-            url = f'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={date}&appid={key}'
+    # return list of JSON objects
+    return responses
 
-            try:
-                response = requests.get(url)
 
-            except requests.exceptions.RequestException as error:
-                raise SystemExit(error)
+def get_past_weather(key: str, lat_lon_bins: list) -> list:
+    '''Takes list of lat, lon bins and API key. Returns 
+    yesterday's weather data as list of JSON dicts.'''
 
-            # get response as string and load into JSON object, append to response list
-            print(f'Got past data for: {lat}, {lon} on {date}')
-            text = response.text
-            data = json.loads(text)
-            responses.append(data)
+    # Construct list of target dates
+    responses = []
+    date_yesterday = (datetime.today() - timedelta(1)).strftime('%Y-%m-%d')
 
-            # wait, so we don't hit the API server too hard
-            time.sleep(1)
+    print(f'Will get weather data for: {date_yesterday}')
+
+    # loop on lat lon bins to get data
+    for lat_lon_bin in lat_lon_bins:
+        lat = lat_lon_bin[0]
+        lon = lat_lon_bin[1]
+
+        url = f'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={date_yesterday}&appid={key}'
+
+        try:
+            response = requests.get(url)
+
+        except requests.exceptions.RequestException as error:
+            raise SystemExit(error)
+
+        # get response as string and load into JSON object, append to response list
+        print(f'Got past data for: {lat}, {lon} on {date_yesterday}')
+        text = response.text
+        data = json.loads(text)
+        responses.append(data)
+
+        # wait, so we don't hit the API server too hard
+        time.sleep(1)
 
     # return list of JSON objects
     return responses
