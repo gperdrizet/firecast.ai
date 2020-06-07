@@ -2,7 +2,41 @@ import numpy as np
 np.random.seed(42)
 import tensorflow as tf
 tf.random.set_seed(42)
+import geopandas as gpd
 from tensorflow.python.keras import backend as K
+
+def get_california_polygon(shapefile):
+    gdf = gpd.read_file(shapefile)
+    california = gdf[gdf['NAME'] == 'California']
+    return(california)
+
+def regularize_grid(data, data_type):
+    
+    # data coordinates and values
+    x = data['lon']
+    y = data['lat']
+    z = data[data_type]
+
+    # target grid to interpolate to
+    xi = np.arange(fires_per_bin['lon'].min(), fires_per_bin['lon'].max(), GRID_SPACING)
+    yi = np.arange(fires_per_bin['lat'].min(), fires_per_bin['lat'].max(), GRID_SPACING)
+    xi,yi = np.meshgrid(xi,yi)
+
+    # interpolate
+    zi = griddata((x,y),z,(xi,yi),method='linear')
+    
+    return xi, yi, zi
+
+def calculate_frac_ignitions(data_type, num_bins):
+    max_val = max(data[data_type])
+    min_val = min(data[data_type])
+    freq = (max_val - min_val) / num_bins
+    bins = pd.interval_range(start=min_val, freq=freq, end=max_val)
+    ignitions = pd.cut(ignition[data_type], bins=bins)
+    all_data = pd.cut(data[data_type], bins=bins)
+    fraction_ignitions = ignitions.value_counts() / all_data.value_counts()
+    real_bin_nums = range(len(fraction_ignitions))
+    return(fraction_ignitions, real_bin_nums)
 
 def multivariate_data(
     dataset,

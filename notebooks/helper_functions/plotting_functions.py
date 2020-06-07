@@ -5,6 +5,53 @@ import seaborn as sns
 import sklearn
 from sklearn.metrics import confusion_matrix
 
+def density_plot(plot_location, data, data_type, title, xlabel, ylabel):
+    values, base = np.histogram(data[data_type], bins=40)
+    values = values / len(data)
+
+    ax[plot_location].plot(base[:-1], values, color='black', linewidth=1)
+    ax[plot_location].tick_params(labelsize=12)
+    ax[plot_location].set_title(title, fontsize=18)
+    ax[plot_location].set_xlabel(xlabel, fontsize=14)
+    ax[plot_location].set_ylabel(ylabel, fontsize=15)
+    ax[plot_location].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    #ax[plot_location].set_ylim([-0.05,1.05])
+    
+    return ax
+
+def map_plot(plot_location, california_land_mass, xi, yi, zi, title, num_contour_levels):
+    ax[plot_location].add_patch(PolygonPatch(california_land_mass, fc='none', ec='black', lw='2', zorder=2))
+    ax[plot_location].contourf(xi, yi, zi, num_contour_levels, cmap='viridis')
+    ax[plot_location].set_title(title, fontsize=18)
+    ax[plot_location].axis('scaled')
+    return ax
+
+def boxplot(plot_location, no_ignition, ignition, data_type, title, xlabel, ylabel):
+    plot_data = [no_ignition[data_type], ignition[data_type]]
+
+    ax[plot_location].boxplot(plot_data, widths = 0.6, patch_artist = False)
+    ax[plot_location].tick_params(labelsize=12)
+    ax[plot_location].set_title(title, fontsize=18)
+    ax[plot_location].set_xlabel(xlabel, fontsize=14)
+    ax[plot_location].set_ylabel(ylabel, fontsize=15)
+    ax[plot_location].set_xticklabels(['no','yes'])
+    
+    return ax
+    
+def binned_scatterplot(plot_location, data_type, title, xlabel, ylabel, num_bins):
+    plot_data, real_bin_nums = calculate_frac_ignitions(data_type, num_bins)
+
+    ax[plot_location].plot(real_bin_nums, plot_data, color='black')
+    ax[plot_location].tick_params(labelsize=12)
+    ax[plot_location].set_title(title, fontsize=18)
+    ax[plot_location].set_xlabel(xlabel, fontsize=14)
+    ax[plot_location].set_xticks([])
+    ax[plot_location].set_ylabel(ylabel, fontsize=15)
+    ax[plot_location].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    ax[plot_location].set_ylim([-0.05,0.125])
+    
+    return ax
+
 def data_diagnostic_plot(data, var, y_streach, y_scale):
     plt.plot(
         data.index, 
