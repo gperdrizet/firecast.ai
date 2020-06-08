@@ -1,4 +1,5 @@
 import random
+from statistics import mean
 import numpy as np
 np.random.seed(42)
 import tensorflow as tf
@@ -11,6 +12,10 @@ from scipy.interpolate import griddata
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
+
+from xgboost import XGBClassifier
+
+from sklearn.metrics import confusion_matrix
 
 def get_california_polygon(shapefile):
     gdf = gpd.read_file(shapefile)
@@ -185,7 +190,12 @@ def tune_class_weight(
     max_jobs,
     rand_seed,
     data,
-    repitions
+    repitions,
+    sample_size,
+    train_test_split_ratio,
+    cv_folds,
+    scoring_func_name,
+    scoring_func
 ):
     # Takes class weight list, number of parallel jobs
     # A random seed and training data. Itterates over
@@ -208,7 +218,7 @@ def tune_class_weight(
             
             # draw new stratifited sample and run train test split
             X_train, X_test, y_train, y_test = make_train_test_sample(
-                data_daily_mean, 
+                data, 
                 sample_size, 
                 train_test_split_ratio, 
                 rand_seed
