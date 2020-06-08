@@ -1,4 +1,4 @@
-# California Wildfire Risk Prediction
+# FireCast.AI - wildfire ignition risk forecasting
 
 ![Heatmap banner](https://github.com/gperdrizet/firecast.ai/blob/master/project_info/figures/heatmap_cropped.png?raw=true)
 
@@ -6,14 +6,12 @@ The goal of this project is to build a machine learning model which can predict 
 
 #### -- Project Status: [Active]
 
-## Introduction
+## Project Description
 
 Wild fires are common, destructive and deadly natural disasters. Current meteorology based risk prediction methods can be improved upon by: 
 
-1. Applying modern machine learning techniques
-2. Leveraging historical wildfire data for model training and validation
-
-## Project Description
+1. The application of modern machine learning techniques
+2. Use of historical wildfire data for model training and validation
 
 This project uses a parallel LSTM neural network to predict geospatialy resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API.
 
