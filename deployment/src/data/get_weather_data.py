@@ -45,18 +45,21 @@ def get_past_weather(key: str, lat_lon_bins: list) -> list:
     '''Takes list of lat, lon bins and API key. Returns 
     yesterday's weather data as list of JSON dicts.'''
 
-    # Construct list of target dates
+    # Construct target date
     responses = []
     date_yesterday = (datetime.today() - timedelta(1)).strftime('%Y-%m-%d')
+    timestamp_yesterday = int(time.mktime(
+        datetime.strptime(date_yesterday, '%Y-%m-%d').timetuple()))
 
     print(f'Will get weather data for: {date_yesterday}')
+    print(f'Timestamp reads: {timestamp_yesterday}')
 
     # loop on lat lon bins to get data
     for lat_lon_bin in lat_lon_bins:
         lat = lat_lon_bin[0]
         lon = lat_lon_bin[1]
 
-        url = f'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={date_yesterday}&appid={key}'
+        url = f'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={timestamp_yesterday}&appid={key}'
 
         try:
             response = requests.get(url)
@@ -67,6 +70,7 @@ def get_past_weather(key: str, lat_lon_bins: list) -> list:
         # get response as string and load into JSON object, append to response list
         print(f'Got past data for: {lat}, {lon} on {date_yesterday}')
         text = response.text
+        print(text)
         data = json.loads(text)
         responses.append(data)
 
