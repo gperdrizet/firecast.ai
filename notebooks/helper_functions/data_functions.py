@@ -9,6 +9,7 @@ import geopandas as gpd
 from tensorflow.python.keras import backend as K
 from scipy.interpolate import griddata
 
+from sklearn.metrics import make_scorer
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
