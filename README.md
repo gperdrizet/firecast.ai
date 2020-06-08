@@ -15,15 +15,15 @@ Wild fires are common, destructive and deadly natural disasters. Current meteoro
 
 This project uses a parallel LSTM neural network to predict geospatialy resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
 
-## [Featured notebooks]
-1.[Exploratory data analysis](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/01-exploratory_data_analysis.ipynb)
-2.[Classifier model evaluation](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/02-classifier_model_selection.ipynb)
-3.[Feature engineering](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/03-add_features.ipynb)
-4.[Fully stratified sampling](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/04-recursive_sampling.ipynb)
-5.[XGBoost optimization](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/05-XGBoost_optimization.ipynb)
-6.[Deep neural network optimization](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/06-deep_neural_network_optimization.ipynb)
-7.[Single LSTM optimization](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/07-single_LSTM_optimization.ipynb)
-8.[Geospatialy parallel LSTM](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/08-parallel_LSTM.ipynb)
+## Featured notebooks
+1. [Exploratory data analysis](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/01-exploratory_data_analysis.ipynb)
+2. [Classifier model evaluation](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/02-classifier_model_selection.ipynb)
+3. [Feature engineering](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/03-add_features.ipynb)
+4. [Fully stratified sampling](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/04-recursive_sampling.ipynb)
+5. [XGBoost optimization](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/05-XGBoost_optimization.ipynb)
+6. [Deep neural network optimization](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/06-deep_neural_network_optimization.ipynb)
+7. [Single LSTM optimization](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/07-single_LSTM_optimization.ipynb)
+8. [Geospatialy parallel LSTM](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/08-parallel_LSTM.ipynb)
 
 ## Data Sources
 1. Historical wildfire activity: United States Department of Agriculture Research Data Archive, [*Spatial wildfire occurrence data for the United States, 1992-2015*](https://www.fs.usda.gov/rds/archive/catalog/RDS-2013-0009.4)<sup>1</sup>
