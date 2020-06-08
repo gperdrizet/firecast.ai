@@ -1,4 +1,4 @@
-# FireCast.AI - wildfire ignition risk forecasting
+# Firecast.ai - machine learning wildfire ignition risk forecasting
 
 ![Heatmap banner](https://github.com/gperdrizet/firecast.ai/blob/master/project_info/figures/heatmap_cropped.png?raw=true)
 
