@@ -1,5 +1,7 @@
 # California Wildfire Risk Prediction
 
+![Heatmap banner](https://github.com/gperdrizet/firecast.ai/blob/master/project_info/figures/heatmap_cropped.png?raw=true)
+
 The goal of this project is to build a machine learning model which can predict wildfire ignition risk in California from publicly available meteorology and fire activity data.
 
 #### -- Project Status: [Active]
