@@ -33,6 +33,9 @@ or, using pip and venv.
     source firecast.ai/bin/activate
     cd firecast.ai
     pip install -r requirements.txt
+    
+Due to size and space constraints only the final training dataset and its derivatives are included in this repo. Raw and intermediate data files created by the training data pipeline are not hosted on 
+github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). Note: total size on disk is 326G, ~2500 files.  
 
 ## Featured notebooks
 1. [Exploratory data analysis](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/01-exploratory_data_analysis.ipynb)
