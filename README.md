@@ -8,9 +8,9 @@ The goal of this project is to build a machine learning model which can predict 
 
 ## Project Description
 
-Wild fires are common, destructive and deadly natural disasters. Current meteorology based risk prediction methods can be improved upon by: 
+Wildfires are common, destructive and deadly natural disasters. Current meteorology based wildfire risk prediction methods can be improved upon by: 
 
-1. The application of modern machine learning techniques
+1. The application of modern data pipeline automation and machine learning techniques
 2. Use of historical wildfire data for model training and validation
 
 This project uses a parallel LSTM neural network to predict geospatialy resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
@@ -22,19 +22,20 @@ First, clone the repo:
     
 Next, you have two options to install required packages:
 
-Using conda (reccomended). This will install a complete copy of the development environment, including all dependencies.
+#### A) Conda. 
+This will install a complete copy of the development environment, including all dependencies.
 
     cd firecast.ai
     conda env create -f environment.yml
 
-or, using pip and venv.
+#### B) using pip and venv.
 
     python3 -m venv firecast.ai
     source firecast.ai/bin/activate
     cd firecast.ai
     pip install -r requirements.txt
     
-Due to size and space constraints only the final training dataset and its derivatives are included in this repo. Raw and intermediate data files created by the training data pipeline are not hosted on 
+Due to size and space constraints, only the final training dataset and its derivatives are included in this repo. Raw and intermediate data files created by the training data pipeline are not hosted on 
 github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). Note: total size on disk is 326G, ~2500 files.  
 
 ## Featured notebooks
@@ -57,7 +58,7 @@ github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). No
 * Machine Learning
 * Gradient boosted decision trees
 * Deep neural networks
-* Parallel long short term memory neural networks
+* Long short term memory neural networks
 * Cartographic Projection
 * Time Series Analysis
 * Feature Engineering
@@ -84,15 +85,6 @@ github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). No
 * Xarray
 * Matplotlib
 * Seaborn
-
-## Getting Started
-
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/))
-2. Training data sets are being kept [here](https://www.perdrizet.org/data/wildfire/)
-3. Data exploration/transformation notebooks are being kept [here](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks)
-4. Finalized scripts for data aquisition and transformation are being kept [here](https://github.com/gperdrizet/wildfire_production/tree/master/training_data_pipeline)
-5. Deployment related scripts and data are [here](https://github.com/gperdrizet/wildfire_production/tree/master/deployment)
-
 
 ## Contributing Members
 
