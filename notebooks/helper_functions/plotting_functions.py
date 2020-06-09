@@ -78,6 +78,36 @@ def display_confusion_matrix(classifier, class_names, x_test, y_test):
     normalized_cm.ax_.set_title("Normalized confusion matrix")
 
     plt.show()
+    
+def plot_relative_feature_importance(model, data, x_test, x_tick_size):
+    # Takes a fit model, orignal data and test data, plots relative feature
+    # importance
+    
+    column_names = x_test.columns
+    
+    if 'weather_bin_time' in column_names:
+        x_test = x_test.drop('weather_bin_time', axis=1)
+    
+    importances = model.feature_importances_
+    indices = np.argsort(importances)[::-1]
+    feature_names = np.array(list(x_test))
+
+    plt.figure(figsize=(20,10))
+    plt.rc('axes', titlesize=30)     # fontsize of the axes title
+    plt.rc('axes', labelsize=30)    # fontsize of the x and y labels
+    plt.rc('xtick', labelsize=x_tick_size)    # fontsize of the tick labels
+    plt.rc('ytick', labelsize=25)    # fontsize of the tick labels
+    plt.title("Feature importance")
+    plt.bar(range(x_test.shape[1]), importances[indices],
+           color="darkblue", align="center")
+    plt.xticks(np.arange(len(indices)), feature_names[indices], rotation='vertical')
+    plt.xlim([-1, x_test.shape[1]])
+    plt.xlabel("Feature")
+    plt.ylabel("Relative importance")
+    
+    plt.show()
+    
+    sns.set_context("notebook", font_scale=1.5, rc={"lines.linewidth": 2.5})
 
 def data_diagnostic_plot(data, var, y_streach, y_scale):
     plt.plot(
