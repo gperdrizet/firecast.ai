@@ -15,6 +15,25 @@ Wild fires are common, destructive and deadly natural disasters. Current meteoro
 
 This project uses a parallel LSTM neural network to predict geospatialy resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
 
+## Using this repository
+First, clone the repo:
+
+    git clone https://github.com/gperdrizet/firecast.ai.git
+    
+Next, you have two options to install required packages:
+
+1. Using conda (reccomended). This will install a complete copy of the development environment, including all dependencies.
+    
+    cd firecast.ai
+    conda env create -f environment.yml
+    
+2. Using pip and venv.
+
+    python3 -m venv firecast.ai
+    source firecast.ai/bin/activate
+    cd firecast.ai
+    pip install -r requirements.txt
+
 ## Featured notebooks
 1. [Exploratory data analysis](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/01-exploratory_data_analysis.ipynb)
 2. [Classifier model evaluation](https://github.com/gperdrizet/wildfire_production/tree/master/notebooks/02-classifier_model_selection.ipynb)
