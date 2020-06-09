@@ -22,12 +22,12 @@ First, clone the repo:
     
 Next, you have two options to install required packages:
 
-1. Using conda (reccomended). This will install a complete copy of the development environment, including all dependencies.
-    
+Using conda (reccomended). This will install a complete copy of the development environment, including all dependencies.
+
     cd firecast.ai
     conda env create -f environment.yml
-    
-2. Using pip and venv.
+
+or, using pip and venv.
 
     python3 -m venv firecast.ai
     source firecast.ai/bin/activate
