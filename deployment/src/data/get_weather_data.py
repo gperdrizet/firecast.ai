@@ -70,7 +70,6 @@ def get_past_weather(key: str, lat_lon_bins: list) -> list:
         # get response as string and load into JSON object, append to response list
         print(f'Got past data for: {lat}, {lon} on {date_yesterday}')
         text = response.text
-        print(text)
         data = json.loads(text)
         responses.append(data)
 

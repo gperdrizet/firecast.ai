@@ -95,8 +95,8 @@ class ParseWeatherData(luigi.Task):
     variables of intrest'''
 
     def requires(self):
-        # requires successful download of weather data
-        return GetWeatherData()
+        # requires successful download of today's past and future weather data
+        return GetWeatherForecast(), GetPastWeather()
 
     def output(self):
         # output is csv file named for today's date in intermediate data
@@ -105,13 +105,11 @@ class ParseWeatherData(luigi.Task):
         return luigi.LocalTarget(output_file)
 
     def run(self):
-        # load JSON file produced by GetWeatherData task
-        with self.input().open('r') as input_file:
-            input_data = json.load(input_file)
 
+        # features to extract from weather data
+        column_names = config.WEATHER_DATA_COLUMN_NAMES
         # run function to parse, extract and format weather data
-        output_data = parse_data(
-            input_data, config.WEATHER_DATA_COLUMN_NAMES)
+        output_data = parse_data(TODAY, 5, 7, column_names)
 
         print(f'Will save parsed weather data to: {self.output().path}')
         print(output_data.head())
