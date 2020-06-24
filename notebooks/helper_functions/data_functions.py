@@ -501,6 +501,7 @@ def trim_and_reshape_for_LSTM(x, y):
 
 def weighted_bce(class_0_weight, class_1_weight):
     '''Implements weighted binary cross-entropy loss for multiclass classification'''
+
     def loss(y_true, y_pred):
         return K.mean(K.binary_crossentropy(y_true, y_pred) * ((y_true * class_1_weight) + class_0_weight))
     
