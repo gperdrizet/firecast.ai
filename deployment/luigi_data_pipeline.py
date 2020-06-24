@@ -9,8 +9,9 @@ import keys
 
 from datetime import date, datetime, timedelta
 
-from data.get_weather_data import get_weather_forecast
-from data.get_weather_data import get_past_weather
+from data.get_data import get_current_fires
+from data.get_data import get_weather_forecast
+from data.get_data import get_past_weather
 from data.parse_weather_data import parse_data
 from data.scale_weather_features import scale_features
 from data.onehot_encode_month import onehot_month
@@ -24,6 +25,28 @@ print(f'Running prediction pipeline for: {TODAY}')
 print(f'Will get past data for: {YESTERDAY}')
 
 
+class GetActiveFires(luigi.Task):
+    '''Gets active fires from https://data-nifc.opendata.arcgis.com'''
+
+    def requires(self):
+        # First task in pipeline, requires nothing
+        return None
+
+    def output(self):
+        # Output is JSON fire data file named for today's date
+        output_file = f'{config.RAW_DATA_DIR}fires/{TODAY}.json'
+        return luigi.LocalTarget(output_file)
+
+    def run(self):
+
+        # run functions to download fire data
+        fire_data = get_current_fires()
+
+        # save result as JSON
+        with self.output().open('w') as output_file:
+            json.dump(weather_data, output_file)
+
+
 class GetWeatherForecast(luigi.Task):
     '''Gets weather forecast data from openweathermap.org API'''
 
@@ -33,7 +56,7 @@ class GetWeatherForecast(luigi.Task):
 
     def output(self):
         # Output is JSON weather data file named for today's date
-        output_file = f'{config.RAW_WEATHER_DATA_DIR}future/{TODAY}.json'
+        output_file = f'{config.RAW_DATA_DIR}future_weather/{TODAY}.json'
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -50,7 +73,8 @@ class GetWeatherForecast(luigi.Task):
             lat_lon_bins = list(rows)
 
         # run functions to download weather data from API
-        weather_data = get_weather_forecast(key, lat_lon_bins)
+        weather_data = get_weather_forecast(
+            key, lat_lon_bins, TODAY, YESTERDAY)
 
         # save result as JSON
         with self.output().open('w') as output_file:
@@ -66,7 +90,7 @@ class GetPastWeather(luigi.Task):
 
     def output(self):
         # Output is JSON weather data file named for today's date
-        output_file = f'{config.RAW_WEATHER_DATA_DIR}past/{YESTERDAY}.json'
+        output_file = f'{config.RAW_WEATHER_DATA_DIR}past_weather/{YESTERDAY}.json'
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -83,7 +107,7 @@ class GetPastWeather(luigi.Task):
             lat_lon_bins = list(rows)
 
         # run functions to download weather data from API
-        weather_data = get_past_weather(key, lat_lon_bins)
+        weather_data = get_past_weather(key, lat_lon_bins, TODAY, YESTERDAY)
 
         # save result as JSON
         with self.output().open('w') as output_file:
@@ -101,7 +125,7 @@ class ParseWeatherData(luigi.Task):
     def output(self):
         # output is csv file named for today's date in intermediate data
         # processing directory
-        output_file = f'{config.INTERMIDIATE_WEATHER_DATA_DIR}{TODAY}.parquet'
+        output_file = f'{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}.parquet'
         return luigi.LocalTarget(output_file)
 
     def run(self):
