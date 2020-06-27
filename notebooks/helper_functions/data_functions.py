@@ -433,6 +433,8 @@ def format_features_labels_for_LSTM(
         
         # get index of ignition column
         ignition_index = spatial_bin.columns.get_loc('ignition')
+        lat_index = spatial_bin.columns.get_loc('lat')
+        lon_index = spatial_bin.columns.get_loc('lon')
         
         # convert to numpy array
         spatial_bin = np.array(spatial_bin.values)
@@ -440,6 +442,8 @@ def format_features_labels_for_LSTM(
         # split ignition label off
         target = spatial_bin[:, ignition_index]
         spatial_bin = np.delete(spatial_bin, ignition_index, 1)
+        spatial_bin = np.delete(spatial_bin, lat_index, 1)
+        spatial_bin = np.delete(spatial_bin, lon_index, 1)
         
         bin_data = []
         bin_labels = []
