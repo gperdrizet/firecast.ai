@@ -1,12 +1,10 @@
-RAW_DATA_DIR = '../data/raw/'
-INTERMIDIATE_DATA_DIR = '../data/intermediate/'
-PROCESSED_DATA_DIR = '../data/processed/'
-IGNITION_RISK_PREDICTIONS_DIR = '../data/predictions/'
-LAT_LON_BINS_FILE = '../data/intermediate/spatial/california_geospatial_bins.csv'
+RAW_DATA_DIR = 'data/raw/'
+INTERMIDIATE_DATA_DIR = 'data/intermediate/'
+PROCESSED_DATA_DIR = 'data/processed/'
+IGNITION_RISK_PREDICTIONS_DIR = 'data/predictions/'
+LAT_LON_BINS_FILE = 'data/intermediate/spatial/california_geospatial_bins.csv'
 
-QUANTILE_TRANSFORMER_FILE = './data/quantile_transformer'
-MIN_MAX_SCALER_FILE = './data/min_max_scaler'
-TRAINED_MODEL_WEIGHTS_FILE = './models/parallel_LSTM_weights.tf'
+DATA_TRANSFORMATION_DIR = 'data_functions/'
 
 WEATHER_DATA_COLUMN_NAMES = [
     'date',

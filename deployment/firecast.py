@@ -7,17 +7,18 @@ import pandas as pd
 import config
 import keys
 
+from pickle import load
 from datetime import date, datetime, timedelta
 
-from data.get_data import get_current_fires
-from data.get_data import get_weather_forecast
-from data.get_data import get_past_weather
-from data.parse_weather_data import parse_data
-from data.scale_weather_features import scale_features
-from data.onehot_encode_month import onehot_month
-from data.format_for_lstm import format_data
-from prediction.predict_ignition_risk import predict
-from prediction.format_predictions_for_api import format_for_api
+from data_functions.get_data import get_current_fires
+from data_functions.get_data import get_weather_forecast
+from data_functions.get_data import get_past_weather
+from data_functions.parse_weather_data import parse_data
+from data_functions.scale_weather_features import scale_features
+from data_functions.onehot_encode_month import onehot_month
+from data_functions.format_for_lstm import format_data
+#from prediction_functions.predict_ignition_risk import predict
+from prediction_functions.format_predictions_for_api import format_for_api
 
 TODAY = str(date.today())
 YESTERDAY = str(date.today() - timedelta(1))
@@ -40,11 +41,11 @@ class GetActiveFires(luigi.Task):
     def run(self):
 
         # run functions to download fire data
-        fire_data = get_current_fires()
+        fire_data = get_current_fires(TODAY)
 
         # save result as JSON
         with self.output().open('w') as output_file:
-            json.dump(weather_data, output_file)
+            json.dump(fire_data, output_file)
 
 
 class GetWeatherForecast(luigi.Task):
@@ -74,7 +75,7 @@ class GetWeatherForecast(luigi.Task):
 
         # run functions to download weather data from API
         weather_data = get_weather_forecast(
-            key, lat_lon_bins, TODAY, YESTERDAY)
+            key, lat_lon_bins, TODAY)
 
         # save result as JSON
         with self.output().open('w') as output_file:
@@ -90,7 +91,7 @@ class GetPastWeather(luigi.Task):
 
     def output(self):
         # Output is JSON weather data file named for today's date
-        output_file = f'{config.RAW_WEATHER_DATA_DIR}past_weather/{YESTERDAY}.json'
+        output_file = f'{config.RAW_DATA_DIR}past_weather/{YESTERDAY}.json'
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -107,7 +108,7 @@ class GetPastWeather(luigi.Task):
             lat_lon_bins = list(rows)
 
         # run functions to download weather data from API
-        weather_data = get_past_weather(key, lat_lon_bins, TODAY, YESTERDAY)
+        weather_data = get_past_weather(key, lat_lon_bins, YESTERDAY)
 
         # save result as JSON
         with self.output().open('w') as output_file:
@@ -120,7 +121,7 @@ class ParseWeatherData(luigi.Task):
 
     def requires(self):
         # requires successful download of today's past and future weather data
-        return GetWeatherForecast(), GetPastWeather()
+        return GetWeatherForecast(), GetPastWeather(), GetActiveFires()
 
     def output(self):
         # output is csv file named for today's date in intermediate data
@@ -153,7 +154,7 @@ class ScaleWeatherFeatures(luigi.Task):
     def output(self):
         # writes result to intermidate data processing dir, names after today's
         # date with extension
-        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}{TODAY}_scaled.parquet"
+        output_file = f"{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_scaled.parquet"
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -163,8 +164,10 @@ class ScaleWeatherFeatures(luigi.Task):
         # load box cox transformer and min max scalers which were used
         # to scale the training data - this way our live prediction data
         # is transformed in exactly the same way
-        quantile_tansformer = config.QUANTILE_TRANSFORMER_FILE
-        min_max_scaler = config.MIN_MAX_SCALER_FILE
+        quantile_tansformer_file = f'{config.DATA_TRANSFORMATION_DIR}quantile_transformer'
+        min_max_scaler_file = f'{config.DATA_TRANSFORMATION_DIR}min_max_scaler'
+        quantile_tansformer = load(open(quantile_tansformer_file, 'rb'))
+        min_max_scaler = load(open(min_max_scaler_file, 'rb'))
 
         # run function to transform and scale features of intrest
         features_to_scale = config.WEATHER_FEATURES_TO_SCALE
@@ -185,7 +188,7 @@ class OneHotEncodeMonth(luigi.Task):
     def output(self):
         # writes result to intermidate data processing dir, names after today's
         # date with descriptive extension
-        output_file = f"{config.INTERMIDIATE_WEATHER_DATA_DIR}{TODAY}_scaled_onehot_month.parquet"
+        output_file = f"{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_scaled_onehot_month.parquet"
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -209,7 +212,7 @@ class FormatForLSTM(luigi.Task):
 
     def output(self):
         # saves result to pickled numpy array of arrays
-        output_file = f"{config.PROCESSED_WEATHER_DATA_DIR}{TODAY}_input_weather_data.npy"
+        output_file = f"{config.PROCESSED_DATA_DIR}weather/{TODAY}_input_weather_data.npy"
         return luigi.LocalTarget(output_file, format=luigi.format.Nop)
 
     def run(self):
@@ -248,18 +251,17 @@ class Predict(luigi.Task):
         with self.input().open('r') as input_file:
             input_data = np.load(input_file)
 
-        # load pretrained model weights
-        weights_file = config.TRAINED_MODEL_WEIGHTS_FILE
-
-        # load optimized model hyperparameters
-        hyperparameters = config.LSTM_HYPERPARAMETERS
-
-        # run prediction
-        output_data = predict(input_data, hyperparameters, weights_file)
-
+        data = json.dumps(
+            {"signature_name": "serving_default", "instances": input_data.tolist()})
+        headers = {"content-type": "application/json"}
+        json_response = requests.post(
+            'http://0.0.0.0:8501/v1/models/parallel_LSTM:predict', data=data, headers=headers)
+        # predictions = json.loads(json_response.text)['predictions'] # gives key error on 'predictions'
+        predictions = json.loads(json_response.text)
+        print(predictions)
         # save predictions
         with self.output().open('wb') as output_file:
-            np.save(output_file, output_data)
+            np.save(output_file, predictions)
 
 
 class FormatPredictionsForAPI(luigi.Task):

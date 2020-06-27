@@ -8,4 +8,4 @@ COPY . ./
 RUN ./install_packages.sh
 
 # Run startup script
-CMD ./startup.sh
+CMD ./start_up.sh

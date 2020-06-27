@@ -20,7 +20,7 @@ def parse_data(today: str, window_size: int, future_days: int, column_names: lis
     # future data first
 
     # construct filename for weather prediction data
-    prediction_data_filename = f'{config.RAW_WEATHER_DATA_DIR}future/{today}.json'
+    prediction_data_filename = f'{config.RAW_DATA_DIR}future_weather/{today}.json'
 
     # load future weather data
     with open(prediction_data_filename) as prediction_data_file:
@@ -106,7 +106,7 @@ def parse_data(today: str, window_size: int, future_days: int, column_names: lis
         date = date.strftime('%Y-%m-%d')
 
         # construct filename for weather prediction data
-        past_data_filename = f'{config.RAW_WEATHER_DATA_DIR}past/{date}.json'
+        past_data_filename = f'{config.RAW_DATA_DIR}past_weather/{date}.json'
 
         # load future weather data
         with open(past_data_filename) as past_data_file:

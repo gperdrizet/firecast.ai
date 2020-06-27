@@ -7,7 +7,7 @@ apt-get update
 
 # Install security updates:
 apt-get -y upgrade
-apt-get install -y  curl gnupg2
+apt-get install -y curl gnupg2 
 
 # Install tf serving without AVX
 echo "deb [arch=amd64] http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal" | tee /etc/apt/sources.list.d/tensorflow-serving.list && \
@@ -19,5 +19,4 @@ apt-get install -y tensorflow-model-server-universal
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
-pip install luigi
-pip install Flask
+pip install luigi Flask requests numpy pandas sklearn
