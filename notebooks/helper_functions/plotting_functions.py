@@ -144,7 +144,7 @@ def one_sample_density_plot(
 
     ax[plot_location].plot(base[:-1], (values/len(data)))
     ax[plot_location].tick_params(labelsize=12)
-    ax[plot_location].set_title(title, fontsize=18)
+    #ax[plot_location].set_title(title, fontsize=18)
     ax[plot_location].set_xlabel(xlabel, fontsize=14)
     ax[plot_location].set_ylabel(ylabel, fontsize=15)
     ax[plot_location].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
@@ -174,12 +174,12 @@ def three_sample_density_plot(
     ax[plot_location].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
     
     
-def plot_metrics(history, metrics, filename):
+def plot_metrics(title, history, metrics, filename):
     '''takes history from model.fit() keras call, training metrics of intrest and filename.
-    plots training metrics over time and saves .png figuresd to filename'''
+    plots training metrics over time and saves .png figures to filename'''
     
     plt.subplots(2, 3, figsize=(10.5, 7.0))
-    count_based_metrics = {'true_positives', 'true_negatives', 'false_positives', 'false_negatives'}
+    st = plt.suptitle(title, fontsize=14)
     
     # loop on metrics to make plots
     for n, metric in enumerate(metrics):
@@ -194,6 +194,8 @@ def plot_metrics(history, metrics, filename):
     
     plt.legend()
     plt.tight_layout()
+    st.set_y(0.95)
+    plt.subplots_adjust(top=0.85)
     plt.savefig(filename, bbox_inches='tight')
 
 def plot_ignition_predictions(predictions, actual, filename):
@@ -345,3 +347,38 @@ def plot_cm(training_labels, training_predictions, test_labels, test_predictions
     plt.tight_layout()
     plt.savefig(filename, bbox_inches='tight')
  
+
+def plot_multiple_CMs(training_labels, training_predictions, test_labels, test_predictions, title, filename, p=0.5):
+    training_cm = confusion_matrix(training_labels, training_predictions > p)
+    training_normalized_cm = np.empty([2, 2])
+    training_normalized_cm[0][0] = training_cm[0][0] / (training_cm[0][0] + training_cm[0][1])
+    training_normalized_cm[0][1] = training_cm[0][1] / (training_cm[0][0] + training_cm[0][1])
+    training_normalized_cm[1][0] = training_cm[1][0] / (training_cm[1][0] + training_cm[1][1])
+    training_normalized_cm[1][1] = training_cm[1][1] / (training_cm[1][0] + training_cm[1][1])
+    
+    test_cm = confusion_matrix(test_labels, test_predictions > p)
+    test_normalized_cm = np.empty([2, 2])
+    test_normalized_cm[0][0] = test_cm[0][0] / (test_cm[0][0] + test_cm[0][1])
+    test_normalized_cm[0][1] = test_cm[0][1] / (test_cm[0][0] + test_cm[0][1])
+    test_normalized_cm[1][0] = test_cm[1][0] / (test_cm[1][0] + test_cm[1][1])
+    test_normalized_cm[1][1] = test_cm[1][1] / (test_cm[1][0] + test_cm[1][1])
+    
+    plt.subplots(1, 2, figsize=(10, 5))
+    st = plt.suptitle(title, fontsize=14)
+
+    plt.subplot(1, 2, 1)
+    sns.heatmap(training_normalized_cm, annot=True, cmap=("Blues"))
+    plt.title('Training confusion matrix @{:.2f}'.format(p))
+    plt.ylabel('Actual label')
+    plt.xlabel('Predicted label')
+    
+    plt.subplot(1, 2, 2)
+    sns.heatmap(test_normalized_cm, annot=True, cmap=("Blues"))
+    plt.title('Test data confusion matrix @{:.2f}'.format(p))
+    plt.ylabel('Actual label')
+    plt.xlabel('Predicted label')
+    
+    plt.tight_layout()
+    st.set_y(0.95)
+    plt.subplots_adjust(top=0.85)
+    plt.savefig(filename, bbox_inches='tight')

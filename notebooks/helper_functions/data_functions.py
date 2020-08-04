@@ -369,20 +369,49 @@ def multivariate_data(
     return np.array(data), np.array(labels)
 
 
-def f1(y_true, y_pred): #taken from old keras source code
-    '''calculates harmonic mean of precision and recall
-    Note: this function was removed from keras'''
+# def f1(y_true, y_pred): #taken from old keras source code
+#     '''calculates harmonic mean of precision and recall
+#     Note: this function was removed from keras'''
     
-    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
-    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+#     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+#     possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+#     predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
     
-    precision = true_positives / (predicted_positives + K.epsilon())
-    recall = true_positives / (possible_positives + K.epsilon())
+#     precision = true_positives / (predicted_positives + K.epsilon())
+#     recall = true_positives / (possible_positives + K.epsilon())
     
-    f1_val = 2 * ((precision*10) * recall) / ((precision*10) + recall + K.epsilon())
+#     f1_val = 2 * ((precision*10) * recall) / ((precision*10) + recall + K.epsilon())
     
-    return f1_val
+#     return f1_val
+
+
+def f1(y_true, y_pred):
+    y_pred = K.round(y_pred)
+    tp = K.sum(K.cast(y_true*y_pred, 'float'), axis=0)
+    tn = K.sum(K.cast((1-y_true)*(1-y_pred), 'float'), axis=0)
+    fp = K.sum(K.cast((1-y_true)*y_pred, 'float'), axis=0)
+    fn = K.sum(K.cast(y_true*(1-y_pred), 'float'), axis=0)
+
+    p = tp / (tp + fp + K.epsilon())
+    r = tp / (tp + fn + K.epsilon())
+
+    f1 = 2*p*r / (p+r+K.epsilon())
+    f1 = tf.where(tf.math.is_nan(f1), tf.zeros_like(f1), f1)
+    return K.mean(f1)
+
+def f1_loss(y_true, y_pred):
+    
+    tp = K.sum(K.cast(y_true*y_pred, 'float'), axis=0)
+    tn = K.sum(K.cast((1-y_true)*(1-y_pred), 'float'), axis=0)
+    fp = K.sum(K.cast((1-y_true)*y_pred, 'float'), axis=0)
+    fn = K.sum(K.cast(y_true*(1-y_pred), 'float'), axis=0)
+
+    p = tp / (tp + fp + K.epsilon())
+    r = tp / (tp + fn + K.epsilon())
+
+    f1 = 2*p*r / (p+r+K.epsilon())
+    f1 = tf.where(tf.math.is_nan(f1), tf.zeros_like(f1), f1)
+    return 1 - K.mean(f1)
 
 
 def matthews_correlation(y_true, y_pred):
@@ -421,20 +450,28 @@ def format_features_labels_for_LSTM(
     labels = []
     
     # break dataframe into spatial bins by lat lon
-    spatial_bins = dataframe.groupby(['lat', 'lon'])
+    spatial_bins = dataframe.groupby(['raw_lat', 'raw_lon'])
+    
+    lats = []
+    lons = []
     
     # loop on spatial bins and split each into test and training 
-    # sets 
+    # sets
+    
     for bin_name, spatial_bin in spatial_bins:
         
         # sort bin by date, then drop date column
         spatial_bin = spatial_bin.sort_values('date')
+        dates = spatial_bin['date']
         spatial_bin.drop('date', axis=1, inplace=True)
         
-        # get index of ignition column
+        lats.append(spatial_bin['raw_lat'].iloc[0])
+        lons.append(spatial_bin['raw_lon'].iloc[0])
+        
+        # get index of ignition, lat, lon column
         ignition_index = spatial_bin.columns.get_loc('ignition')
-        lat_index = spatial_bin.columns.get_loc('lat')
-        lon_index = spatial_bin.columns.get_loc('lon')
+        lat_index = spatial_bin.columns.get_loc('raw_lat')
+        lon_index = spatial_bin.columns.get_loc('raw_lon')
         
         # convert to numpy array
         spatial_bin = np.array(spatial_bin.values)
@@ -467,7 +504,7 @@ def format_features_labels_for_LSTM(
         data.append(np.array(bin_data))
         labels.append(np.array(bin_labels))
 
-    return data, labels
+    return data, labels, lats, lons, dates
 
 
 def trim_and_reshape_for_LSTM(x, y):
@@ -510,3 +547,45 @@ def weighted_bce(class_0_weight, class_1_weight):
         return K.mean(K.binary_crossentropy(y_true, y_pred) * ((y_true * class_1_weight) + class_0_weight))
     
     return loss
+
+def scale_features(data: 'DataFrame', features_to_scale: list, quantile_transformer: 'QuantileTransformer', min_max_scaler: 'MinMaxScaler') -> 'DataFrame':
+    '''Takes data and list of weather features, prefit quantile transformer
+    and min max scaler. Returns dataframe with weather normalized weather
+    features scaled to range of (-1, 1)'''
+
+    # run box cox transform on features of intrest
+    normalized_data = pd.DataFrame(quantile_transformer.transform(
+        data[features_to_scale]), columns=features_to_scale)
+    data[features_to_scale] = normalized_data
+
+    # scale features of intrest
+    scaled_features = min_max_scaler.transform(data[features_to_scale])
+    data[features_to_scale] = scaled_features
+
+    # reset dtypes of transformed features
+    data[features_to_scale] = data[features_to_scale].astype('float32')
+
+    # return resulting dataframe
+    return data
+
+def get_class_weights(data):
+    # set class weight based of the frequency of fires
+    num_observations = len(data)
+    num_fires = data['ignition'].sum()
+    num_no_fire = num_observations - num_fires
+    
+    weight_for_0 = (1 / num_no_fire) * (num_observations) / 2.0 
+    weight_for_1 = (1 / num_fires) * (num_observations) / 2.0
+    class_weight = {0: weight_for_0, 1: weight_for_1}
+    
+    return class_weight
+
+def get_initial_output_bias(data):
+    # set initial value for output bias based on fire frequency
+    num_observations = len(data)
+    num_fires = data['ignition'].sum()
+    
+    raw_output_bias = np.log([num_fires / (num_observations - num_fires)])
+    output_bias = tf.keras.initializers.Constant(raw_output_bias)
+    
+    return output_bias

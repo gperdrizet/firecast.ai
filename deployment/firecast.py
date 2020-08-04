@@ -255,9 +255,10 @@ class Predict(luigi.Task):
             {"signature_name": "serving_default", "instances": input_data.tolist()})
         headers = {"content-type": "application/json"}
         json_response = requests.post(
-            'http://0.0.0.0:8501/v1/models/parallel_LSTM:predict', data=data, headers=headers)
-        # predictions = json.loads(json_response.text)['predictions'] # gives key error on 'predictions'
-        predictions = json.loads(json_response.text)
+            'http://localhost:8501/parallel_LSTM/versions/1:predict', data=data, headers=headers)
+        print(f'Post response code: {json_response.status_code}')
+        predictions = json.loads(json_response.text)['predictions']
+        #predictions = json.loads(json_response.text)
         print(predictions)
         # save predictions
         with self.output().open('wb') as output_file:

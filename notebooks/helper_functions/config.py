@@ -1,7 +1,14 @@
 from tensorflow import keras
 import helper_functions.data_functions as data_functions
 
+raw_data_file = '/mnt/SSD/data/training_data/1992-2015_california.parquet'
+raw_data_box_file = '/mnt/SSD/data/training_data/1992-2002_california_box.parquet'
 training_data_file = '/mnt/SSD/data/training_data/1992-2015_california_features_added.parquet'
+lat_lon_bins_file = '/mnt/SSD/data/spatial_data/california_geospatial_bins.parquet'
+states_shapefile = '/mnt/SSD/data/spatial_data/cb_2018_us_state_500k.shp'
+
+quantile_tansformer_file = './data_transformations/quantile_transformer'
+min_max_scaler_file = './data_transformations/min_max_scaler'
 
 features = [
     'lat',
@@ -68,11 +75,18 @@ plot_locations = [
 #     (2,0),(2,1),(2,2),(2,3)
 ]
 
-metrics = [
-    keras.metrics.TruePositives(name='true_positives'),
-    keras.metrics.FalsePositives(name='false_positives'),
-    keras.metrics.TrueNegatives(name='true_negatives'),
-    keras.metrics.FalseNegatives(name='false_negatives'), 
-    keras.metrics.AUC(name='auc'),
-    data_functions.matthews_correlation
-]
+# metrics = [
+#     keras.metrics.TruePositives(name='true_positives'),
+#     keras.metrics.FalsePositives(name='false_positives'),
+#     keras.metrics.TrueNegatives(name='true_negatives'),
+#     keras.metrics.FalseNegatives(name='false_negatives'), 
+#     keras.metrics.AUC,#(name='auc'),
+#     data_functions.matthews_correlation,
+#     data_functions.f1
+# ]
+
+shape_parameters = {
+    'history_size': 5,         # size of past history time chunk
+    'target_size': 1,          # number of timepoints to predict from each history time chunk
+    'step': 1                  # number of timepoints to move the history time chunk
+}
