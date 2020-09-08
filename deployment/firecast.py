@@ -14,11 +14,13 @@ from data_functions.get_data import get_current_fires
 from data_functions.get_data import get_weather_forecast
 from data_functions.get_data import get_past_weather
 from data_functions.parse_weather_data import parse_data
+from data_functions.add_total_fires_per_bin import add_fires_per_bin
 from data_functions.scale_weather_features import scale_features
 from data_functions.onehot_encode_month import onehot_month
 from data_functions.format_for_lstm import format_data
-#from prediction_functions.predict_ignition_risk import predict
-from prediction_functions.format_predictions_for_api import format_for_api
+from prediction_functions.predict_ignition_risk import predict
+from prediction_functions.format_predictions import format_predictions
+from prediction_functions.make_map_pages import make_maps
 
 TODAY = str(date.today())
 YESTERDAY = str(date.today() - timedelta(1))
@@ -134,7 +136,7 @@ class ParseWeatherData(luigi.Task):
         # features to extract from weather data
         column_names = config.WEATHER_DATA_COLUMN_NAMES
         # run function to parse, extract and format weather data
-        output_data = parse_data(TODAY, 5, 7, column_names)
+        output_data = parse_data(TODAY, column_names)
 
         print(f'Will save parsed weather data to: {self.output().path}')
         print(output_data.head())
@@ -142,19 +144,45 @@ class ParseWeatherData(luigi.Task):
         output_data.to_parquet(self.output().path)
 
 
+class AddFiresPerBin(luigi.Task):
+    '''Takes parsed weather data, adds a column containing the total number of fires
+    in each geospatial bin from the historical wildfire dataset'''
+
+    def requires(self):
+        # requires successful parse of today's past and future weather data
+        return ParseWeatherData()
+
+    def output(self):
+        # output is csv file named for today's date in intermediate data
+        # processing directory
+        output_file = f'{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_total_fires_added.parquet'
+        return luigi.LocalTarget(output_file)
+
+    def run(self):
+
+        # total fires per geospatial bin
+        fires_per_bin_file = config.TOTAL_FIRES_PER_BIN_FILE
+        # parsed weather data
+        parsed_weather_data_file = f'{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}.parquet'
+        # run function to add total fires to weather data
+        output_data = add_fires_per_bin(
+            parsed_weather_data_file, fires_per_bin_file)
+        # write output
+        output_data.to_parquet(self.output().path)
+
+
 class ScaleWeatherFeatures(luigi.Task):
-    '''Nomalize weather data with box cox transformation
-    then scale to range (-1, 1), matches tanh activation function
+    '''Weather data scale to range (-1, 1), matches tanh activation function
     in LSTM layers'''
 
     def requires(self):
         # requires parsed weather data
-        return ParseWeatherData()
+        return AddFiresPerBin()
 
     def output(self):
-        # writes result to intermidate data processing dir, names after today's
+        # writes result to intermidate data processing dir, named after today's
         # date with extension
-        output_file = f"{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_scaled.parquet"
+        output_file = f'{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_scaled.parquet'
         return luigi.LocalTarget(output_file)
 
     def run(self):
@@ -164,51 +192,56 @@ class ScaleWeatherFeatures(luigi.Task):
         # load box cox transformer and min max scalers which were used
         # to scale the training data - this way our live prediction data
         # is transformed in exactly the same way
-        quantile_tansformer_file = f'{config.DATA_TRANSFORMATION_DIR}quantile_transformer'
-        min_max_scaler_file = f'{config.DATA_TRANSFORMATION_DIR}min_max_scaler'
-        quantile_tansformer = load(open(quantile_tansformer_file, 'rb'))
+        min_max_scaler_file = f'{config.DATA_TRANSFORMATION_DIR}min-1_max1_scaler'
+        # quantile_transformer_file = f'{config.DATA_TRANSFORMATION_DIR}selective_box_cox'
         min_max_scaler = load(open(min_max_scaler_file, 'rb'))
+        # quantile_transformer = load(open(quantile_transformer_file, 'rb'))
 
         # run function to transform and scale features of intrest
-        features_to_scale = config.WEATHER_FEATURES_TO_SCALE
+        features_to_scale = config.FEATURES_TO_SCALE
+        #features_to_transform = config.FEATURES_TO_TRANSFORM
+
+        # output_data = scale_features(
+        #     input_data, features_to_scale, features_to_transform, standard_scaler, quantile_transformer)
+
         output_data = scale_features(
-            input_data, features_to_scale, quantile_tansformer, min_max_scaler)
+            input_data, features_to_scale, min_max_scaler)
 
         # write result
         output_data.to_parquet(self.output().path)
 
 
-class OneHotEncodeMonth(luigi.Task):
-    '''One hot encodes month'''
+# class OneHotEncodeMonth(luigi.Task):
+#     '''One hot encodes month'''
 
-    def requires(self):
-        # Takes scaled weather data
-        return ScaleWeatherFeatures()
+#     def requires(self):
+#         # Takes scaled weather data
+#         return ScaleWeatherFeatures()
 
-    def output(self):
-        # writes result to intermidate data processing dir, names after today's
-        # date with descriptive extension
-        output_file = f"{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_scaled_onehot_month.parquet"
-        return luigi.LocalTarget(output_file)
+#     def output(self):
+#         # writes result to intermidate data processing dir, names after today's
+#         # date with descriptive extension
+#         output_file = f"{config.INTERMIDIATE_DATA_DIR}weather/{TODAY}_scaled_onehot_month.parquet"
+#         return luigi.LocalTarget(output_file)
 
-    def run(self):
-        # read scaled weather data
-        input_data = pd.read_parquet(self.input().path)
+#     def run(self):
+#         # read scaled weather data
+#         input_data = pd.read_parquet(self.input().path)
 
-        # run fucntion to one hot encode month
-        output_data = onehot_month(input_data)
+#         # run fucntion to one hot encode month
+#         output_data = onehot_month(input_data)
 
-        # write result to disk
-        output_data.to_parquet(self.output().path)
+#         # write result to disk
+#         output_data.to_parquet(self.output().path)
 
 
-class FormatForLSTM(luigi.Task):
+class FormatForRNN(luigi.Task):
     '''Takes processed weather data and formats for imput to LSTM neural net for
     fire risk prediction.'''
 
     def requires(self):
-        # takes complete transformed,scaled and encoded weather dataset
-        return OneHotEncodeMonth()
+        # Takes scaled weather data
+        return ScaleWeatherFeatures()
 
     def output(self):
         # saves result to pickled numpy array of arrays
@@ -220,7 +253,7 @@ class FormatForLSTM(luigi.Task):
         input_data = pd.read_parquet(self.input().path)
 
         # load target shape parameters for numpy array
-        input_shape_parameters = config.LSTM_INPUT_SHAPE_PARAMETERS
+        input_shape_parameters = config.RNN_INPUT_SHAPE_PARAMETERS
 
         # run function to do shape transforms
         output_data = format_data(input_data, input_shape_parameters)
@@ -239,7 +272,7 @@ class Predict(luigi.Task):
 
     def requires(self):
         # requires formatted weather dataset
-        return FormatForLSTM()
+        return FormatForRNN()
 
     def output(self):
         # writes predictions to npy file named after today's date
@@ -251,23 +284,18 @@ class Predict(luigi.Task):
         with self.input().open('r') as input_file:
             input_data = np.load(input_file)
 
-        data = json.dumps(
-            {"signature_name": "serving_default", "instances": input_data.tolist()})
-        headers = {"content-type": "application/json"}
-        json_response = requests.post(
-            'http://localhost:8501/parallel_LSTM/versions/1:predict', data=data, headers=headers)
-        print(f'Post response code: {json_response.status_code}')
-        predictions = json.loads(json_response.text)['predictions']
-        #predictions = json.loads(json_response.text)
-        print(predictions)
+        trained_model = config.TRAINED_MODEL
+
+        predictions = predict(input_data, trained_model)
+        print(f'predictions: {predictions}')
         # save predictions
         with self.output().open('wb') as output_file:
             np.save(output_file, predictions)
 
 
-class FormatPredictionsForAPI(luigi.Task):
+class FormatPredictions(luigi.Task):
     '''Takes raw prediction results from LSTM neural network and formats
-    them to be served by flask API'''
+    them to be served'''
 
     def requires(self):
         # needs today's predictions
@@ -293,13 +321,33 @@ class FormatPredictionsForAPI(luigi.Task):
             lat_lon_bins = list(rows)
 
         # run fucntion to format predictions
-        output_data = format_for_api(input_data, lat_lon_bins)
+        output_data = format_predictions(input_data, lat_lon_bins)
 
         print(output_data.head())
         print(output_data.info())
 
         # write result to disk
         output_data.to_parquet(self.output().path)
+
+
+class UpdateMapPages(luigi.Task):
+    '''Takes formatted predictions and creates web pages to display
+    heatmap overlay on google maps'''
+
+    def requires(self):
+        # needs formatted predictions
+        return FormatPredictions()
+
+    def output(self):
+        # writes html for webserver
+        output_file = f"{config.WEATHER_HEATMAPS_DIR}index.html"
+        return luigi.LocalTarget(output_file)
+
+    def run(self):
+        # load formatted predictions
+        data = pd.read_parquet(self.input().path)
+        heatmaps_dir = config.WEATHER_HEATMAPS_DIR
+        make_maps(data, TODAY, heatmaps_dir)
 
 
 if __name__ == '__main__':

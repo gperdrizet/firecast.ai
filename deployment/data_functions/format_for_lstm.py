@@ -4,12 +4,14 @@ import pandas as pd
 
 def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarray':
     '''takes dataframe and information about desired output shape (history window size,
-    target window size, timesteps to slide history window) and returns a formatte list'''
+    target window size, timesteps to slide history window) and returns a formatted list'''
 
     # get nessecary shape parameters into named varible for ease of use
     history_size = shape_parameters['history_size']
     target_size = shape_parameters['target_size']
     step = shape_parameters['step']
+
+    print(input_data.info())
 
     # empty dataframe to hold samples
     data_list = []
@@ -21,9 +23,9 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
     for bin_name, spatial_bin in spatial_bins:
 
         # sort bin by date and convert to numpy array
-        # sort bin by date, then drop date column
         spatial_bin = spatial_bin.sort_values('date')
         spatial_bin.drop('date', axis=1, inplace=True)
+        spatial_bin.drop(['raw_lat', 'raw_lon'], axis=1, inplace=True)
         spatial_bin = np.array(spatial_bin.values)
 
         bin_data = []
@@ -41,6 +43,7 @@ def format_data(input_data: 'DataFrame', shape_parameters: dict) -> 'numpy.ndarr
         for i in range(start_index, end_index):
             indices = range(i - history_size, i, step)
             bin_data.append(spatial_bin[indices])
+
         # add to master
         data_list.append(np.array(bin_data))
 

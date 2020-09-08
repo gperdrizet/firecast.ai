@@ -5,7 +5,7 @@ import datetime
 import config
 
 
-def parse_data(today: str, window_size: int, future_days: int, column_names: list) -> 'DataFrame':
+def parse_data(today: str, column_names: list) -> 'DataFrame':
     '''Takes list of JSON dicts and target column names, returns
     dataframe containing values of weather variables by day and
     lat lon bin'''
@@ -13,9 +13,9 @@ def parse_data(today: str, window_size: int, future_days: int, column_names: lis
     # empty list to hold results
     rows = []
 
-    # two things to be done here. First we need to parse the future 7 days
-    # of weather prediction data. Then we need to parse at least window_size days
-    # and combine the two.
+    # Two things to be done here. First we need to parse the future 7 days
+    # of weather prediction data. Then we need to parse the data from the
+    # past 5 days and combine the two.
     #
     # future data first
 
@@ -92,7 +92,7 @@ def parse_data(today: str, window_size: int, future_days: int, column_names: lis
             # add data to growing list of rows
             rows.append(row)
 
-    # now for the past data - in this case we have individual
+    # Now for the past data - in this case we have individual
     # files for each day so we need to make a date range
     # and loop over it. We start with yesterday and go
     # back in time 5 days.
@@ -198,6 +198,7 @@ def parse_data(today: str, window_size: int, future_days: int, column_names: lis
     # saving the dataframe to parquet so we convert the
     # date to string
     rows_df['date'] = rows_df['date'].dt.date.astype(str)
+    rows_df['month'] = pd.DatetimeIndex(rows_df['date']).month.astype('int32')
 
     # return result as dataframe
     return rows_df
