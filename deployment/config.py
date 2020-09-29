@@ -8,6 +8,19 @@ DATA_TRANSFORMATION_DIR = 'data_functions/'
 TRAINED_MODEL = 'trained_models/parallel_RNN.h5'
 WEATHER_HEATMAPS_DIR = 'map_pages/'
 
+WEATHER_API_VARIABLE_NAMES = [
+    'lat',
+    'lon',
+    'dt',
+    'temp',
+    'pressure',
+    'humidity',
+    'dew_point',
+    'wind_speed',
+    'wind_deg',
+    'clouds'
+]
+
 WEATHER_DATA_COLUMN_NAMES = [
     'date',
     'lat',
