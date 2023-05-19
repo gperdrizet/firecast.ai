@@ -13,7 +13,7 @@ Wildfires are common, destructive and deadly natural disasters. Current meteorol
 1. The application of modern data pipeline automation and machine learning techniques
 2. Use of historical wildfire data for model training and validation
 
-This project uses a parallel LSTM neural network to predict geospatialy resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
+This project uses a parallel LSTM neural network to predict geospatially resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
 
 ## Using this repository
 First, clone the repo:
@@ -46,7 +46,7 @@ github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). No
 5. [XGBoost optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/05-XGBoost_optimization.ipynb)
 6. [Deep neural network optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/06-deep_neural_network_optimization.ipynb)
 7. [Single LSTM optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/07-single_LSTM_optimization.ipynb)
-8. [Geospatialy parallel LSTM](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/11.2-parallel_LSTM.ipynb)
+8. [Geospatially parallel LSTM](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/11.2-parallel_LSTM.ipynb)
 
 ## Data Sources
 1. Historical wildfire activity: United States Department of Agriculture Research Data Archive, [*Spatial wildfire occurrence data for the United States, 1992-2015*](https://www.fs.usda.gov/rds/archive/catalog/RDS-2013-0009.4)<sup>1</sup>
