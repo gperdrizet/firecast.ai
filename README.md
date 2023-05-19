@@ -39,13 +39,13 @@ Due to size and space constraints, only the final training dataset and its deriv
 github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). Note: total size on disk is 326G, ~2500 files.  
 
 ## Featured notebooks
-1. [Exploratory data analysis](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/01-exploratory_data_analysis.ipynb)
-2. [Classifier model evaluation](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/02-classifier_model_selection.ipynb)
-3. [Feature engineering](https://github.com/gperdrizet/wildfire_production/blob/master/blob/notebooks/03-add_features.ipynb)
-4. [Fully stratified sampling](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/04-recursive_sampling.ipynb)
-5. [XGBoost optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/05-XGBoost_optimization.ipynb)
-6. [Deep neural network optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/06-deep_neural_network_optimization.ipynb)
-7. [Single LSTM optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/07-single_LSTM_optimization.ipynb)
+1. [Exploratory data analysis](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/01-exploratory_data_analysis.ipynb)
+2. [Classifier model evaluation](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/02-classifier_model_selection.ipynb)
+3. [Feature engineering](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/03-feature_engineering.ipynb)
+4. [Fully stratified sampling](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/05-recursive_sampling.ipynb)
+5. [XGBoost optimization](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/06-XGBoost_optimization.ipynb)
+6. [Deep neural network optimization](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/07-deep_neural_network_optimization.ipynb)
+7. [Single LSTM optimization](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/09.2-single_LSTM_optimization.ipynb)
 8. [Geospatially parallel LSTM](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/11.2-parallel_LSTM.ipynb)
 
 ## Data Sources
