@@ -46,7 +46,7 @@ github, but can be found [here](https://www.perdrizet.org/data/firecast.ai/). No
 5. [XGBoost optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/05-XGBoost_optimization.ipynb)
 6. [Deep neural network optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/06-deep_neural_network_optimization.ipynb)
 7. [Single LSTM optimization](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/07-single_LSTM_optimization.ipynb)
-8. [Geospatialy parallel LSTM](https://github.com/gperdrizet/wildfire_production/blob/master/notebooks/08-parallel_LSTM.ipynb)
+8. [Geospatialy parallel LSTM](https://github.com/gperdrizet/firecast.ai/blob/master/notebooks/11.2-parallel_LSTM.ipynb)
 
 ## Data Sources
 1. Historical wildfire activity: United States Department of Agriculture Research Data Archive, [*Spatial wildfire occurrence data for the United States, 1992-2015*](https://www.fs.usda.gov/rds/archive/catalog/RDS-2013-0009.4)<sup>1</sup>
