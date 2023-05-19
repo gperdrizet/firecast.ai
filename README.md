@@ -13,7 +13,7 @@ Wildfires are common, destructive and deadly natural disasters. Current meteorol
 1. The application of modern data pipeline automation and machine learning techniques
 2. Use of historical wildfire data for model training and validation
 
-This project uses a parallel LSTM neural network to predict geospatially resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be avalible for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
+This project uses a parallel LSTM neural network to predict geospatially resolved wildfire ignition risk in California. The model was trained on a combined dataset produced from the USDA historical wildfire activity dataset(1) and meterological data from NOAA's North American Regional Reanalysis(2). This project is currently in the deployment phase. Live prediction data will be available for 7 days into the future via API. For more background information please see the full [project proposal](https://github.com/gperdrizet/wildfire_production/tree/master/project_info/project_proposal.md)
 
 ## Using this repository
 First, clone the repo:
